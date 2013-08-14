@@ -1,0 +1,327 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		474D3C2D17BBCD7F0034A0E2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 474D3C2C17BBCD7F0034A0E2 /* Cocoa.framework */; };
+		474D3C3717BBCD7F0034A0E2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 474D3C3517BBCD7F0034A0E2 /* InfoPlist.strings */; };
+		474D3C3917BBCD7F0034A0E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D3C3817BBCD7F0034A0E2 /* main.m */; };
+		474D3C3D17BBCD7F0034A0E2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 474D3C3B17BBCD7F0034A0E2 /* Credits.rtf */; };
+		474D3C4017BBCD7F0034A0E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D3C3F17BBCD7F0034A0E2 /* AppDelegate.m */; };
+		474D3C4317BBCD7F0034A0E2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474D3C4117BBCD7F0034A0E2 /* MainMenu.xib */; };
+		474D3C4617BBCD7F0034A0E2 /* InMac_Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 474D3C4417BBCD7F0034A0E2 /* InMac_Chat.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		474D3C2917BBCD7F0034A0E2 /* InMac Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InMac Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		474D3C2C17BBCD7F0034A0E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		474D3C2F17BBCD7F0034A0E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		474D3C3017BBCD7F0034A0E2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		474D3C3117BBCD7F0034A0E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		474D3C3417BBCD7F0034A0E2 /* InMac Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InMac Chat-Info.plist"; sourceTree = "<group>"; };
+		474D3C3617BBCD7F0034A0E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		474D3C3817BBCD7F0034A0E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		474D3C3A17BBCD7F0034A0E2 /* InMac Chat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InMac Chat-Prefix.pch"; sourceTree = "<group>"; };
+		474D3C3C17BBCD7F0034A0E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		474D3C3E17BBCD7F0034A0E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		474D3C3F17BBCD7F0034A0E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		474D3C4217BBCD7F0034A0E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		474D3C4517BBCD7F0034A0E2 /* InMac_Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InMac_Chat.xcdatamodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		474D3C2617BBCD7F0034A0E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				474D3C2D17BBCD7F0034A0E2 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		474D3C2017BBCD7F0034A0E2 = {
+			isa = PBXGroup;
+			children = (
+				474D3C3217BBCD7F0034A0E2 /* InMac Chat */,
+				474D3C2B17BBCD7F0034A0E2 /* Frameworks */,
+				474D3C2A17BBCD7F0034A0E2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		474D3C2A17BBCD7F0034A0E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				474D3C2917BBCD7F0034A0E2 /* InMac Chat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		474D3C2B17BBCD7F0034A0E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				474D3C2C17BBCD7F0034A0E2 /* Cocoa.framework */,
+				474D3C2E17BBCD7F0034A0E2 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		474D3C2E17BBCD7F0034A0E2 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				474D3C2F17BBCD7F0034A0E2 /* AppKit.framework */,
+				474D3C3017BBCD7F0034A0E2 /* CoreData.framework */,
+				474D3C3117BBCD7F0034A0E2 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		474D3C3217BBCD7F0034A0E2 /* InMac Chat */ = {
+			isa = PBXGroup;
+			children = (
+				474D3C3E17BBCD7F0034A0E2 /* AppDelegate.h */,
+				474D3C3F17BBCD7F0034A0E2 /* AppDelegate.m */,
+				474D3C4117BBCD7F0034A0E2 /* MainMenu.xib */,
+				474D3C4417BBCD7F0034A0E2 /* InMac_Chat.xcdatamodeld */,
+				474D3C3317BBCD7F0034A0E2 /* Supporting Files */,
+			);
+			path = "InMac Chat";
+			sourceTree = "<group>";
+		};
+		474D3C3317BBCD7F0034A0E2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				474D3C3417BBCD7F0034A0E2 /* InMac Chat-Info.plist */,
+				474D3C3517BBCD7F0034A0E2 /* InfoPlist.strings */,
+				474D3C3817BBCD7F0034A0E2 /* main.m */,
+				474D3C3A17BBCD7F0034A0E2 /* InMac Chat-Prefix.pch */,
+				474D3C3B17BBCD7F0034A0E2 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		474D3C2817BBCD7F0034A0E2 /* InMac Chat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 474D3C4917BBCD7F0034A0E2 /* Build configuration list for PBXNativeTarget "InMac Chat" */;
+			buildPhases = (
+				474D3C2517BBCD7F0034A0E2 /* Sources */,
+				474D3C2617BBCD7F0034A0E2 /* Frameworks */,
+				474D3C2717BBCD7F0034A0E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "InMac Chat";
+			productName = "InMac Chat";
+			productReference = 474D3C2917BBCD7F0034A0E2 /* InMac Chat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		474D3C2117BBCD7F0034A0E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Mihael Isaev";
+			};
+			buildConfigurationList = 474D3C2417BBCD7F0034A0E2 /* Build configuration list for PBXProject "InMac Chat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 474D3C2017BBCD7F0034A0E2;
+			productRefGroup = 474D3C2A17BBCD7F0034A0E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				474D3C2817BBCD7F0034A0E2 /* InMac Chat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		474D3C2717BBCD7F0034A0E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				474D3C3717BBCD7F0034A0E2 /* InfoPlist.strings in Resources */,
+				474D3C3D17BBCD7F0034A0E2 /* Credits.rtf in Resources */,
+				474D3C4317BBCD7F0034A0E2 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		474D3C2517BBCD7F0034A0E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				474D3C3917BBCD7F0034A0E2 /* main.m in Sources */,
+				474D3C4017BBCD7F0034A0E2 /* AppDelegate.m in Sources */,
+				474D3C4617BBCD7F0034A0E2 /* InMac_Chat.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		474D3C3517BBCD7F0034A0E2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				474D3C3617BBCD7F0034A0E2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		474D3C3B17BBCD7F0034A0E2 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				474D3C3C17BBCD7F0034A0E2 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		474D3C4117BBCD7F0034A0E2 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				474D3C4217BBCD7F0034A0E2 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		474D3C4717BBCD7F0034A0E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		474D3C4817BBCD7F0034A0E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		474D3C4A17BBCD7F0034A0E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InMac Chat/InMac Chat-Prefix.pch";
+				INFOPLIST_FILE = "InMac Chat/InMac Chat-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		474D3C4B17BBCD7F0034A0E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "InMac Chat/InMac Chat-Prefix.pch";
+				INFOPLIST_FILE = "InMac Chat/InMac Chat-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		474D3C2417BBCD7F0034A0E2 /* Build configuration list for PBXProject "InMac Chat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				474D3C4717BBCD7F0034A0E2 /* Debug */,
+				474D3C4817BBCD7F0034A0E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		474D3C4917BBCD7F0034A0E2 /* Build configuration list for PBXNativeTarget "InMac Chat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				474D3C4A17BBCD7F0034A0E2 /* Debug */,
+				474D3C4B17BBCD7F0034A0E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		474D3C4417BBCD7F0034A0E2 /* InMac_Chat.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				474D3C4517BBCD7F0034A0E2 /* InMac_Chat.xcdatamodel */,
+			);
+			currentVersion = 474D3C4517BBCD7F0034A0E2 /* InMac_Chat.xcdatamodel */;
+			path = InMac_Chat.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 474D3C2117BBCD7F0034A0E2 /* Project object */;
+}
