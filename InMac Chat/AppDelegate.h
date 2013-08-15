@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define kInMacShowNotifications @"showNotifications"
+#define kInMacChatUpdateSeconds @"chatUpdateSeconds"
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
@@ -17,5 +20,8 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)saveAction:(id)sender;
+
++(id)getObject:(NSString*)key;
++(void)saveObject:(id)value forKey:(NSString*)key;
 
 @end

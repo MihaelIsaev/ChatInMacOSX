@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Login.h"
 
 @implementation AppDelegate
 
@@ -16,7 +17,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    [[Login shared] didLogin:nil];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "com.mihaelisaev.InMac_Chat" in the user's Application Support directory.
@@ -178,6 +180,17 @@
     }
 
     return NSTerminateNow;
+}
+
++(id)getObject:(NSString*)key
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
+
++(void)saveObject:(id)value forKey:(NSString*)key
+{
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end
