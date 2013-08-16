@@ -9,6 +9,8 @@
 #import "Chat.h"
 #import "NSString+Magic.h"
 #import "AppDelegate.h"
+#import "EntityMessages.h"
+#import "HTMLParser.h"
 
 @interface Chat ()
 
@@ -17,6 +19,9 @@
 @property (strong, nonatomic) NSHTTPURLResponse *response;
 @property (strong, nonatomic) NSMutableData *responseData;
 @property (strong, nonatomic) NSUserNotification *notification;
+@property (strong, nonatomic) EntityMessages *entityMessages;
+@property (strong, nonatomic) TempContext *tempContext;
+@property (strong, nonatomic) NSManagedObjectContext *moc;
 
 @end
 
@@ -54,6 +59,12 @@ static Chat *shared;
         playSoundIncomingMessage = [NSNumber numberWithBool:YES];
         [AppDelegate saveObject:playSoundIncomingMessage forKey:kInMacPlaySoundIncomingMessage];
     }
+    NSNumber *playSoundOutcomingMessage = [AppDelegate getObject:kInMacPlaySoundOutcomingMessage];
+    if(!playSoundOutcomingMessage)
+    {
+        playSoundOutcomingMessage = [NSNumber numberWithBool:YES];
+        [AppDelegate saveObject:playSoundOutcomingMessage forKey:kInMacPlaySoundOutcomingMessage];
+    }
     NSNumber *chatUpdateSeconds = [AppDelegate getObject:kInMacChatUpdateSeconds];
     if(!chatUpdateSeconds)
     {
@@ -61,6 +72,7 @@ static Chat *shared;
         [AppDelegate saveObject:chatUpdateSeconds forKey:kInMacChatUpdateSeconds];
     }
     [self registerInMacURL];
+    [[self.chatWindow firstResponder] performSelector:@selector(toggleContinuousSpellChecking:)];
     return self;
 }
 
@@ -75,13 +87,13 @@ static Chat *shared;
     url = [url replace:@"inmac://" to:@""];
     NSArray *separatedURL = [url componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"~"]];
     NSString *action = [separatedURL objectAtIndex:0];
-    NSMutableString *value = [separatedURL objectAtIndex:1];
+    NSString *value = [separatedURL objectAtIndex:1];
     if([action isEqualToString:@"clickOnUser"])
     {
         if(self.messageTextField.stringValue.length==0)
-            self.messageTextField.stringValue = [NSString stringWithFormat:@"[b]%@[/b]: ", value];
+            self.messageTextField.stringValue = [NSString stringWithFormat:@"[b]%@[/b]: ", [self urldecode:value]];
         else
-            self.messageTextField.stringValue = [NSString stringWithFormat:@"%@, [b]%@[/b]: ", [self.messageTextField.stringValue replace:@"[/b]: " to:@"[/b]"], value];
+            self.messageTextField.stringValue = [NSString stringWithFormat:@"%@, [b]%@[/b]: ", [self.messageTextField.stringValue replace:@"[/b]: " to:@"[/b]"], [self urldecode:value]];
         [self.messageTextField becomeFirstResponder];
         [[self.messageTextField currentEditor] moveToEndOfLine:nil];
     }
@@ -89,6 +101,13 @@ static Chat *shared;
     {
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:value]];
     }
+}
+
+-(NSString *)urldecode:(NSString*)string
+{
+    NSString *result = [(NSString *)string stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return result;
 }
 
 - (void)didGetNewMessagesRequest
@@ -125,14 +144,17 @@ static Chat *shared;
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [conn start];
     self.messageTextField.stringValue = @"";
+    NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"sent_message" ofType:@"aiff"];
+    NSSound *systemSound = [[NSSound alloc] initWithContentsOfFile:resourcePath byReference:YES];
+    if(systemSound && [[AppDelegate getObject:kInMacPlaySoundOutcomingMessage] boolValue])
+        [systemSound play];
 }
 
 - (void)didDeleteMessageRequestFromRow:(NSInteger)row
 {
-    NSDictionary *message = [self.messages objectAtIndex:row];
-    NSString *messageID = [message objectForKey:@"id"];
+    EntityMessages *message = [self.messages objectAtIndex:row];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://inmac.org/json/chat/"]];
-    NSString *paramsString = [NSString stringWithFormat:@"mode=delete&p=%@", messageID];
+    NSString *paramsString = [NSString stringWithFormat:@"mode=delete&p=%@", message.ident];
     [request setHTTPBody:[paramsString dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     [request setCachePolicy:NSURLRequestReloadRevalidatingCacheData];
@@ -142,9 +164,9 @@ static Chat *shared;
     [request setTimeoutInterval:10];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [conn start];
-    NSMutableArray *messages = [self.messages mutableCopy];
-    [messages removeObjectAtIndex:row];
-    self.messages = [messages copy];
+    [self.moc deleteObject:[self.entityMessages getByTime:message.time uid:message.uid moc:self.moc]];
+    [self.tempContext save];
+    [self loadMessages];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessages" object:nil];
 }
 
@@ -171,38 +193,33 @@ static Chat *shared;
     NSDictionary *chatAnswer = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
     if(!error && [[self.response.allHeaderFields objectForKey:@"Content-Type"] isEqualToString:@"application/json"])
     {
+        NSString *moderatorMode = [chatAnswer objectForKey:@"modcp"];
+        self.moderatorMode = (moderatorMode && [[chatAnswer objectForKey:@"modcp"] boolValue]);
         NSArray *messages = [chatAnswer objectForKey:@"messages"];
         if(messages.count>0)
         {
-            [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
-            self.notification = [[NSUserNotification alloc] init];
-            self.notification.title = @"InMac Chat";
-            if(messages.count==1)
+            for(NSDictionary *message in messages)
             {
-                NSDictionary *message = [messages objectAtIndex:0];
-                NSString *user = [[message objectForKey:@"user"] stringByStrippingHTML];
-                NSString *text = [[message objectForKey:@"text"] stringByStrippingHTML];
-                self.notification.informativeText = [NSString stringWithFormat:@"%@: %@", user, text];
+                HTMLParser *parser = [[HTMLParser alloc] initWithString:[message objectForKey:@"user"] error:nil];
+                HTMLNode *userBodyNode = [parser doc];
+                HTMLNode *userSpanNode = [userBodyNode findChildTag:@"span"];
+                NSString *userClass = [userSpanNode getAttributeNamed:@"class"];
+                [self.entityMessages addOrUpdate:[message objectForKey:@"id"]
+                                             uid:[message objectForKey:@"uid"]
+                                            text:[message objectForKey:@"text"]
+                                            user:[message objectForKey:@"user"]
+                                          avatar:[message objectForKey:@"avatar"]
+                                            time:[NSDecimalNumber decimalNumberWithString:[message objectForKey:@"time"]]
+                                              my:[NSNumber numberWithInt:[[message objectForKey:@"my"] intValue]]
+                                       userClass:(userClass)?userClass:@""
+                                             moc:self.moc];
             }
-            else
-                self.notification.informativeText = [NSString stringWithFormat:@"Новые сообщения: %liшт.", messages.count];
-            NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"tick" ofType:@"aiff"];
-            NSSound *systemSound = [[NSSound alloc] initWithContentsOfFile:resourcePath byReference:YES];
-            if(systemSound && [[AppDelegate getObject:kInMacPlaySoundIncomingMessage] boolValue])
-                [systemSound play];
-            if(![[NSApplication sharedApplication] isActive] && [[AppDelegate getObject:kInMacCountUnreadInDock] boolValue])
-            {
-                self.unreadedMessages += messages.count;
-                NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
-                [tile setBadgeLabel:[NSString stringWithFormat:@"%li", self.unreadedMessages]];
-            }
-            if([[AppDelegate getObject:kInMacShowNotifications] boolValue])
-                [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:self.notification];
-            NSDictionary *lastMessage = [messages objectAtIndex:0];
-            NSString *messageID = [lastMessage objectForKey:@"id"];
-            self.lastMessageID = messageID;
-            self.messages = [messages arrayByAddingObjectsFromArray:self.messages];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessages" object:nil];
+            [self loadMessages];
+            [self.tempContext save];
+            [self showUserNotification:messages];
+            [self playNewIncomingMessageSound];
+            [self didRecalculateBage:messages];
+            self.lastMessageID = [[messages objectAtIndex:0] objectForKey:@"id"];
         }
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             sleep([[AppDelegate getObject:kInMacChatUpdateSeconds] floatValue]);
@@ -214,6 +231,54 @@ static Chat *shared;
     else
         NSLog(@"chat messages error: %@ responseData: %@", [error localizedDescription], [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
       */
+}
+
+-(void)loadMessages
+{
+    if(!self.entityMessages)
+        self.entityMessages = [[EntityMessages alloc] init];
+    if(!self.tempContext)
+        self.tempContext = [[TempContext alloc] init];
+    if(!self.moc)
+        self.moc = [self.tempContext get];
+    self.messages = [[self.entityMessages getAll:self.moc] copy];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessages" object:nil];
+}
+
+-(void)showUserNotification:(NSArray*)messages
+{
+    [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
+    self.notification = [[NSUserNotification alloc] init];
+    self.notification.title = @"InMac Chat";
+    if(messages.count==1)
+    {
+        NSDictionary *message = [messages objectAtIndex:0];
+        NSString *user = [[message objectForKey:@"user"] stringByStrippingHTML];
+        NSString *text = [[message objectForKey:@"text"] stringByStrippingHTML];
+        self.notification.informativeText = [NSString stringWithFormat:@"%@: %@", user, text];
+    }
+    else
+        self.notification.informativeText = [NSString stringWithFormat:@"Новые сообщения: %liшт.", messages.count];
+    if([[AppDelegate getObject:kInMacShowNotifications] boolValue])
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:self.notification];
+}
+
+-(void)playNewIncomingMessageSound
+{
+    NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"new_message" ofType:@"aiff"];
+    NSSound *systemSound = [[NSSound alloc] initWithContentsOfFile:resourcePath byReference:YES];
+    if(systemSound && [[AppDelegate getObject:kInMacPlaySoundIncomingMessage] boolValue] && ![[NSApplication sharedApplication] isActive])
+        [systemSound play];
+}
+
+-(void)didRecalculateBage:(NSArray*)messages
+{
+    if(![[NSApplication sharedApplication] isActive] && [[AppDelegate getObject:kInMacCountUnreadInDock] boolValue])
+    {
+        self.unreadedMessages += messages.count;
+        NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
+        [tile setBadgeLabel:[NSString stringWithFormat:@"%li", self.unreadedMessages]];
+    }
 }
 
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
@@ -256,6 +321,11 @@ static Chat *shared;
     [AppDelegate saveObject:[NSNumber numberWithInteger:sender.state] forKey:kInMacPlaySoundIncomingMessage];
 }
 
+- (IBAction)changePlaySoundOutcomingMessage:(NSButton*)sender
+{
+    [AppDelegate saveObject:[NSNumber numberWithInteger:sender.state] forKey:kInMacPlaySoundOutcomingMessage];
+}
+
 - (IBAction)changeChatUpdateSeconds:(NSStepper*)sender
 {
     [AppDelegate saveObject:[NSNumber numberWithInt:sender.intValue] forKey:kInMacChatUpdateSeconds];
@@ -281,6 +351,8 @@ static Chat *shared;
         [self.countUnreadInDockButton setState:[countUnreadInDock boolValue]];
         NSNumber *playSoundIncomingMessage = [AppDelegate getObject:kInMacPlaySoundIncomingMessage];
         [self.playSoundIncomingMessageButton setState:[playSoundIncomingMessage boolValue]];
+        NSNumber *playSoundOutcomingMessage = [AppDelegate getObject:kInMacPlaySoundOutcomingMessage];
+        [self.playSoundOutcomingMessageButton setState:[playSoundOutcomingMessage boolValue]];
         NSNumber *chatUpdateSeconds = [AppDelegate getObject:kInMacChatUpdateSeconds];
         self.chatUpdateSecondsTextField.stringValue = [NSString stringWithFormat:@"%.0f", [chatUpdateSeconds floatValue]];
         [self.chatUpdateSecondsStepper setIntValue:[chatUpdateSeconds intValue]];

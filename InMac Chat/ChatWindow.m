@@ -13,6 +13,7 @@
 #import "NSString+HTML.h"
 #import "AppDelegate.h"
 #import "HTMLParser.h"
+#import "EntityMessages.h"
 
 @implementation ChatWindow
 
@@ -29,28 +30,36 @@
 
 -(NSAttributedString*)attributedMessageTextForRow:(NSInteger)row
 {
-    NSDictionary *message = [[[Chat shared] messages] objectAtIndex:row];
-    HTMLParser *parser = [[HTMLParser alloc] initWithString:[message objectForKey:@"text"] error:nil];
-    HTMLNode *textBodyNode = [parser doc];
-    NSString *text = [[message objectForKey:@"text"] stringByConvertingHTMLToPlainText];
-    NSString *user = [[NSString stringWithFormat:@"%@:", [message objectForKey:@"user"]] stringByStrippingHTML];
+    EntityMessages *message = [[[Chat shared] messages] objectAtIndex:row];
+    HTMLParser *parserUser = [[HTMLParser alloc] initWithString:[NSString stringWithFormat:@"<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"></head><body>%@</body></html>", message.user] error:nil];
+    HTMLParser *parserText = [[HTMLParser alloc] initWithString:[NSString stringWithFormat:@"<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"></head><body>%@</body></html>", message.text] error:nil];
+    HTMLNode *userBodyNode = [parserUser doc];
+    HTMLNode *textBodyNode = [parserText doc];
+    NSString *text = [textBodyNode allContents];
+    NSString *user = [userBodyNode allContents];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     [attributedString appendAttributedString: [[NSAttributedString alloc] initWithString:user]];
     [attributedString appendAttributedString: [[NSAttributedString alloc] initWithString:@"  "]];
     [attributedString appendAttributedString: [[NSAttributedString alloc] initWithString:text]];
     [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Verdana-Bold" size:12.0f] range:[attributedString.string rangeOfString:user]];
-    [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSSingleUnderlineStyle] range:[attributedString.string rangeOfString:user]];
+    //[attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSSingleUnderlineStyle] range:[attributedString.string rangeOfString:user]];
     [attributedString addAttribute:NSLinkAttributeName
-                             value:[NSString stringWithFormat:@"inmac://clickOnUser~%@", [[message objectForKey:@"user"] stringByStrippingHTML]]
+                             value:[NSString stringWithFormat:@"inmac://clickOnUser~%@", user]
                              range:[attributedString.string rangeOfString:user]];
     [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Verdana" size:12.0f] range:[attributedString.string rangeOfString:text]];
     for(HTMLNode *aTextNode in [textBodyNode findChildTags:@"a"])
     {
         [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Verdana" size:11.0f] range:[attributedString.string rangeOfString:[aTextNode contents]]];
-        [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSSingleUnderlineStyle] range:[attributedString.string rangeOfString:[aTextNode contents]]];
         [attributedString addAttribute:NSLinkAttributeName
                                  value:[NSString stringWithFormat:@"inmac://openURL~%@", [aTextNode getAttributeNamed:@"href"]]
-                                 range:[attributedString.string rangeOfString:[aTextNode contents]]];
+                                 range:[attributedString.string rangeOfString:[aTextNode allContents]]];
+    }
+    for(HTMLNode *bTextNode in [textBodyNode findChildrenOfClass:@"post-b"])
+    {
+        [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Verdana-Bold" size:11.0f] range:[attributedString.string rangeOfString:[bTextNode allContents]]];
+        [attributedString addAttribute:NSLinkAttributeName
+                                 value:[NSString stringWithFormat:@"inmac://clickOnUser~%@", [bTextNode allContents]]
+                                 range:[attributedString.string rangeOfString:[bTextNode allContents]]];
     }
     
     return attributedString;
@@ -82,23 +91,9 @@
                   row:(NSInteger)row
 {
     ChatMessageCell *cellView = [tableView makeViewWithIdentifier:@"MessageCell" owner:self];
-    NSDictionary *message = [[[Chat shared] messages] objectAtIndex:row];
-    HTMLParser *parser = [[HTMLParser alloc] initWithString:[message objectForKey:@"user"] error:nil];
-    HTMLNode *userBodyNode = [parser doc];
-    HTMLNode *userSpanNode = [userBodyNode findChildTag:@"span"];
-    NSString *userClass = [userSpanNode getAttributeNamed:@"class"];
-    NSString *userHexColor = @"000000";
-    if([userClass contains:@"colorAdmin"])
-        userHexColor = @"F80000";
-    else if([userClass contains:@"colorMod"])
-        userHexColor = @"008000";
-    else if([userClass contains:@"colorGroup"])
-        userHexColor = @"CC6633";
-    else if([userClass contains:@"colorCPH"])
-        userHexColor = @"0080FF";
+    EntityMessages *message = [[[Chat shared] messages] objectAtIndex:row];
     //аватар
-    NSString *avatarLink = [message objectForKey:@"avatar"];
-    NSString *imageURLString = [NSString stringWithFormat:@"http://static.inmac.org/avatars/%@", (avatarLink.length>0)?avatarLink:@"guest.png"];
+    NSString *imageURLString = [NSString stringWithFormat:@"http://static.inmac.org/avatars/%@", (message.avatar.length>0)?message.avatar:@"guest.png"];
     if(![AppDelegate getObject:imageURLString])
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             NSURL *imageURL = [NSURL URLWithString:imageURLString];
@@ -109,21 +104,21 @@
         });
     else
         cellView.avatarButton.image = [[NSImage alloc] initWithData:[AppDelegate getObject:imageURLString]];
-    [cellView setDate:[message objectForKey:@"time"]];
+    [cellView setDate:message.time.stringValue];
     if(!cellView.textViewTemp)
     {
         cellView.textViewTemp = cellView.textView;
-        [cellView.textViewTemp setLinkTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                      [AppDelegate colorWithHexColorString:userHexColor], NSForegroundColorAttributeName,
-                                                      [AppDelegate colorWithHexColorString:userHexColor], NSStrokeColorAttributeName,
-                                                      [NSCursor pointingHandCursor], NSCursorAttributeName,
-                                                      nil] ];
         [cellView.textViewTemp setFrame:cellView.scrollView.frame];
         [cellView addSubview:cellView.textViewTemp];
         [cellView.scrollView removeFromSuperview];
     }
     [cellView.textViewTemp.textStorage setAttributedString:[self attributedMessageTextForRow:row]];
-    [cellView.removeButton setHidden:![[message objectForKey:@"my"] boolValue]];
+    [cellView.textViewTemp setLinkTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                  [self userColorByClass:message.userClass], NSForegroundColorAttributeName,
+                                                  [self userColorByClass:message.userClass], NSStrokeColorAttributeName,
+                                                  [NSCursor pointingHandCursor], NSCursorAttributeName,
+                                                  nil] ];
+    [cellView.removeButton setHidden:!(message.my.boolValue || [[Chat shared] moderatorMode])];
     [cellView.avatarButton setAction:@selector(openUserProfile:)];
     return cellView;
 }
@@ -139,6 +134,20 @@
 - (IBAction)removeMessage:(NSButton*)sender
 {
     [[Chat shared] didDeleteMessageRequestFromRow:[self.messagesTable rowForView:sender.superview]];
+}
+
+-(NSColor*)userColorByClass:(NSString*)userClass
+{
+    NSString *userHexColor = @"1E7676";
+    if([userClass contains:@"colorAdmin"])
+        userHexColor = @"F80000";
+    else if([userClass contains:@"colorMod"])
+        userHexColor = @"008000";
+    else if([userClass contains:@"colorGroup"])
+        userHexColor = @"CC6633";
+    else if([userClass contains:@"colorCPH"])
+        userHexColor = @"0080FF";
+    return [AppDelegate colorWithHexColorString:userHexColor];
 }
 
 @end

@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Chat : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate, NSTextFieldDelegate, NSWindowDelegate>
+@interface Chat : NSObject <NSURLConnectionDelegate, NSTextFieldDelegate, NSWindowDelegate>
 
 + (Chat *)shared;
 
 - (void)didGetNewMessagesRequest;
 
+@property (nonatomic) Boolean moderatorMode;
 @property (nonatomic) NSInteger unreadedMessages;
 @property (strong, nonatomic) NSArray *messages;
 
@@ -25,6 +26,7 @@
 @property (weak) IBOutlet NSButton *showNotificationsButton;
 @property (weak) IBOutlet NSButton *countUnreadInDockButton;
 @property (weak) IBOutlet NSButton *playSoundIncomingMessageButton;
+@property (weak) IBOutlet NSButton *playSoundOutcomingMessageButton;
 @property (weak) IBOutlet NSStepper *chatUpdateSecondsStepper;
 @property (weak) IBOutlet NSTextField *chatUpdateSecondsTextField;
 @property (weak) IBOutlet NSMenuItem *alwaysOnTopMenuItem;
@@ -34,10 +36,12 @@
 - (IBAction)changeShowNotifications:(id)sender;
 - (IBAction)changeCountUnreadInDock:(id)sender;
 - (IBAction)changePlaySoundIncomingMessage:(id)sender;
+- (IBAction)changePlaySoundOutcomingMessage:(id)sender;
 - (IBAction)changeChatUpdateSeconds:(id)sender;
 - (IBAction)changeAlwaysOnTop:(id)sender;
 - (IBAction)openSettings:(id)sender;
 
 - (void)didDeleteMessageRequestFromRow:(NSInteger)row;
+- (void)loadMessages;
 
 @end

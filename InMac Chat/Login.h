@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Login : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate, NSTextFieldDelegate>
+@interface Login : NSObject <NSURLConnectionDelegate, NSTextFieldDelegate>
 
 + (Login *)shared;
 
@@ -20,7 +20,9 @@
 @property (weak) IBOutlet NSTextField *loginTextField;
 @property (weak) IBOutlet NSSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSButton *loginButton;
+@property (weak) IBOutlet NSMenuItem *logoutMenuItem;
 
 - (IBAction)didLogin:(id)sender;
+- (IBAction)didLogout:(id)sender;
 
 @end

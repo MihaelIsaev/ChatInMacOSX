@@ -16,6 +16,4 @@
     return [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
 }
 
-- (IBAction)openSettings:(id)sender {
-}
 @end

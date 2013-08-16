@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "Login.h"
 #import "Chat.h"
+#import "NSString+Magic.h"
+
+static AppDelegate *sharedInstance;
 
 @implementation AppDelegate
 
@@ -16,9 +19,23 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize managedObjectContext = _managedObjectContext;
 
+-(id)init
+{
+    if(sharedInstance)
+        NSLog(@"Error: You are creating a second AppDelegate");
+    sharedInstance = self;
+    return self;
+}
+
++(AppDelegate*)sharedInstance
+{
+    return sharedInstance;
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [[Login shared] didLogin:nil];
+    [[Chat shared] loadMessages];
 }
 
 -(void)applicationDidBecomeActive:(NSNotification *)notification
@@ -29,13 +46,19 @@
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 {
-    if(flag)
-        return NO;
+    if([[Login shared] isAuthorized])
+    {
+        if(self.windowChat.isMiniaturized)
+            return YES;
+        [self.windowChat makeKeyAndOrderFront:self];
+    }
     else
     {
-        [self.windowChat setIsVisible:YES];
-        return YES;
+        if(self.window.isMiniaturized)
+            return YES;
+        [self.window makeKeyAndOrderFront:self];
     }
+    return !(flag);
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "com.mihaelisaev.InMac_Chat" in the user's Application Support directory.
@@ -210,7 +233,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (NSColor*)colorWithHexColorString:(NSString*)inColorString
++(NSColor*)colorWithHexColorString:(NSString*)inColorString
 {
     NSColor* result = nil;
     unsigned colorCode = 0;
