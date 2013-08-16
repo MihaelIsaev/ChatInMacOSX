@@ -10,6 +10,8 @@
 #import "Login.h"
 #import "Chat.h"
 #import "NSString+Magic.h"
+#import "SPMediaKeyTap.h"
+#import "MacStreamingPlayerController.h"
 
 static AppDelegate *sharedInstance;
 
@@ -42,6 +44,11 @@ static AppDelegate *sharedInstance;
 {
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
     [AppDelegate resetDockBage];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                             [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers],
+                                                             kMediaKeyUsingBundleIdentifiersDefaultsKey,
+                                                             nil]];
+    [[MacStreamingPlayerController shared] enableMediakeyListener];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag

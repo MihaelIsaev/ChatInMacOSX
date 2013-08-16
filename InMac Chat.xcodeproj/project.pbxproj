@@ -39,38 +39,19 @@
 		47EE6B6C17BE64AB0030A125 /* icon_128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6B6A17BE64AB0030A125 /* icon_128x128.png */; };
 		47EE6B6D17BE64AB0030A125 /* icon_128x128@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6B6B17BE64AB0030A125 /* icon_128x128@2x.png */; };
 		47EE6B6F17BE654C0030A125 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6B6E17BE654C0030A125 /* icon.icns */; };
+		47EE6B7317BE98950030A125 /* radio.png in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6B7217BE98950030A125 /* radio.png */; };
+		47EE6B8217BEA6470030A125 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE6B8117BEA6470030A125 /* CoreAudio.framework */; };
+		47EE6B8417BEA64C0030A125 /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE6B8317BEA64C0030A125 /* CoreAudioKit.framework */; };
+		47EE6B8617BEA6520030A125 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE6B8517BEA6510030A125 /* AudioToolbox.framework */; };
+		47EE6B8B17BEA6A90030A125 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6B8A17BEA6A90030A125 /* NSObject+SPInvocationGrabbing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		47EE6B8E17BEA6B20030A125 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6B8D17BEA6B20030A125 /* SPMediaKeyTap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		47EE6B9317BEA7A90030A125 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE6B9217BEA7A90030A125 /* Carbon.framework */; };
+		47EE6B9517BEA7AE0030A125 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE6B9417BEA7AE0030A125 /* AVFoundation.framework */; };
+		47EE6B9717BEA7B30030A125 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE6B9617BEA7B30030A125 /* QuartzCore.framework */; };
+		47EE6B9C17BEC2450030A125 /* MacStreamingPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6B9817BEC2450030A125 /* MacStreamingPlayerController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		47EE6B9D17BEC2450030A125 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6B9B17BEC2450030A125 /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		47EE6BA017BECDF80030A125 /* NewsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6B9F17BECDF70030A125 /* NewsWindow.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		47EE6B3917BE38640030A125 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47EE6B3217BE38640030A125 /* SocketRocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F6B2082D1450F597009315AF;
-			remoteInfo = SocketRocket;
-		};
-		47EE6B3B17BE38640030A125 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47EE6B3217BE38640030A125 /* SocketRocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F668C880153E91210044DBAC;
-			remoteInfo = SocketRocketOSX;
-		};
-		47EE6B3D17BE38640030A125 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47EE6B3217BE38640030A125 /* SocketRocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F6BDA802145900D200FE3253;
-			remoteInfo = SRWebSocketTests;
-		};
-		47EE6B3F17BE38640030A125 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 47EE6B3217BE38640030A125 /* SocketRocket.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F62417E314D52F3C003CE997;
-			remoteInfo = TestChat;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		474D3C2917BBCD7F0034A0E2 /* InMac Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InMac Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +97,6 @@
 		47EE6B1617BE13620030A125 /* EntityMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityMessages.m; sourceTree = "<group>"; };
 		47EE6B1B17BE1BCF0030A125 /* TempContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempContext.h; sourceTree = "<group>"; };
 		47EE6B1C17BE1BCF0030A125 /* TempContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempContext.m; sourceTree = "<group>"; };
-		47EE6B3217BE38640030A125 /* SocketRocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SocketRocket.xcodeproj; path = ../SocketRocket/SocketRocket.xcodeproj; sourceTree = "<group>"; };
 		47EE6B4417BE39C90030A125 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
 		47EE6B4517BE39C90030A125 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		47EE6B4617BE39C90030A125 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
@@ -127,10 +107,27 @@
 		47EE6B4F17BE3A670030A125 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		47EE6B5117BE3A750030A125 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		47EE6B5317BE3A7F0030A125 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		47EE6B6717BE522E0030A125 /* InMac_Chat 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InMac_Chat 2.xcdatamodel"; sourceTree = "<group>"; };
+		47EE6B6717BE522E0030A125 /* InMac_Chat 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "InMac_Chat 2.xcdatamodel"; sourceTree = "<group>"; };
 		47EE6B6A17BE64AB0030A125 /* icon_128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_128x128.png; sourceTree = "<group>"; };
 		47EE6B6B17BE64AB0030A125 /* icon_128x128@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_128x128@2x.png"; sourceTree = "<group>"; };
 		47EE6B6E17BE654C0030A125 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
+		47EE6B7217BE98950030A125 /* radio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio.png; sourceTree = "<group>"; };
+		47EE6B8117BEA6470030A125 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		47EE6B8317BEA64C0030A125 /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
+		47EE6B8517BEA6510030A125 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		47EE6B8917BEA6A90030A125 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
+		47EE6B8A17BEA6A90030A125 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
+		47EE6B8C17BEA6B20030A125 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
+		47EE6B8D17BEA6B20030A125 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
+		47EE6B9217BEA7A90030A125 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		47EE6B9417BEA7AE0030A125 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		47EE6B9617BEA7B30030A125 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		47EE6B9817BEC2450030A125 /* MacStreamingPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacStreamingPlayerController.m; sourceTree = "<group>"; };
+		47EE6B9917BEC2450030A125 /* MacStreamingPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacStreamingPlayerController.h; sourceTree = "<group>"; };
+		47EE6B9A17BEC2450030A125 /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
+		47EE6B9B17BEC2450030A125 /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
+		47EE6B9E17BECDF70030A125 /* NewsWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsWindow.h; sourceTree = "<group>"; };
+		47EE6B9F17BECDF70030A125 /* NewsWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +135,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47EE6B9717BEA7B30030A125 /* QuartzCore.framework in Frameworks */,
+				47EE6B9517BEA7AE0030A125 /* AVFoundation.framework in Frameworks */,
+				47EE6B9317BEA7A90030A125 /* Carbon.framework in Frameworks */,
+				47EE6B8617BEA6520030A125 /* AudioToolbox.framework in Frameworks */,
+				47EE6B8417BEA64C0030A125 /* CoreAudioKit.framework in Frameworks */,
+				47EE6B8217BEA6470030A125 /* CoreAudio.framework in Frameworks */,
 				47EE6B6517BE3C5E0030A125 /* Cocoa.framework in Frameworks */,
 				47EE6B5417BE3A7F0030A125 /* Security.framework in Frameworks */,
 				47EE6B5217BE3A750030A125 /* CFNetwork.framework in Frameworks */,
@@ -152,7 +155,6 @@
 		474D3C2017BBCD7F0034A0E2 = {
 			isa = PBXGroup;
 			children = (
-				47EE6B3217BE38640030A125 /* SocketRocket.xcodeproj */,
 				474D3C3217BBCD7F0034A0E2 /* InMac Chat */,
 				474D3C2B17BBCD7F0034A0E2 /* Frameworks */,
 				474D3C2A17BBCD7F0034A0E2 /* Products */,
@@ -172,6 +174,12 @@
 			children = (
 				47EE6ADC17BD77B70030A125 /* libxml2.2.dylib */,
 				47EE6B4F17BE3A670030A125 /* libicucore.dylib */,
+				47EE6B9617BEA7B30030A125 /* QuartzCore.framework */,
+				47EE6B9417BEA7AE0030A125 /* AVFoundation.framework */,
+				47EE6B9217BEA7A90030A125 /* Carbon.framework */,
+				47EE6B8517BEA6510030A125 /* AudioToolbox.framework */,
+				47EE6B8317BEA64C0030A125 /* CoreAudioKit.framework */,
+				47EE6B8117BEA6470030A125 /* CoreAudio.framework */,
 				47EE6B5317BE3A7F0030A125 /* Security.framework */,
 				47EE6B5117BE3A750030A125 /* CFNetwork.framework */,
 				474D3C2F17BBCD7F0034A0E2 /* AppKit.framework */,
@@ -200,6 +208,8 @@
 				47EE6AB117BD15A10030A125 /* ChatMessageCell.m */,
 				47EE6ACD17BD585B0030A125 /* SettingsWindow.h */,
 				47EE6ACE17BD585B0030A125 /* SettingsWindow.m */,
+				47EE6B9E17BECDF70030A125 /* NewsWindow.h */,
+				47EE6B9F17BECDF70030A125 /* NewsWindow.m */,
 				47EE6B1917BE13980030A125 /* Assets */,
 				47EE6B1817BE137D0030A125 /* CoreData */,
 				47EE6B1A17BE13BD0030A125 /* Includes */,
@@ -240,6 +250,7 @@
 				47EE6B6E17BE654C0030A125 /* icon.icns */,
 				47EE6B1117BE02D80030A125 /* new_message.aiff */,
 				47EE6B1217BE02D90030A125 /* sent_message.aiff */,
+				47EE6B7217BE98950030A125 /* radio.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -247,6 +258,11 @@
 		47EE6B1A17BE13BD0030A125 /* Includes */ = {
 			isa = PBXGroup;
 			children = (
+				47EE6B9917BEC2450030A125 /* MacStreamingPlayerController.h */,
+				47EE6B9817BEC2450030A125 /* MacStreamingPlayerController.m */,
+				47EE6B9A17BEC2450030A125 /* AudioStreamer.h */,
+				47EE6B9B17BEC2450030A125 /* AudioStreamer.m */,
+				47EE6B8717BEA6910030A125 /* SPKey */,
 				47EE6B4317BE39C00030A125 /* SocketRocket */,
 				47EE6AC717BD25D20030A125 /* NSString+Magic.h */,
 				47EE6AC817BD25D20030A125 /* NSString+Magic.m */,
@@ -262,17 +278,6 @@
 			name = Includes;
 			sourceTree = "<group>";
 		};
-		47EE6B3317BE38640030A125 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				47EE6B3A17BE38640030A125 /* libSocketRocket.a */,
-				47EE6B3C17BE38640030A125 /* SocketRocket.framework */,
-				47EE6B3E17BE38640030A125 /* SRWebSocketTests.octest */,
-				47EE6B4017BE38640030A125 /* TestChat.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		47EE6B4317BE39C00030A125 /* SocketRocket */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +290,25 @@
 				47EE6B4A17BE39C90030A125 /* SRWebSocket.m */,
 			);
 			name = SocketRocket;
+			sourceTree = "<group>";
+		};
+		47EE6B8717BEA6910030A125 /* SPKey */ = {
+			isa = PBXGroup;
+			children = (
+				47EE6B8817BEA69A0030A125 /* SPInvocationGrabbing */,
+				47EE6B8C17BEA6B20030A125 /* SPMediaKeyTap.h */,
+				47EE6B8D17BEA6B20030A125 /* SPMediaKeyTap.m */,
+			);
+			name = SPKey;
+			sourceTree = "<group>";
+		};
+		47EE6B8817BEA69A0030A125 /* SPInvocationGrabbing */ = {
+			isa = PBXGroup;
+			children = (
+				47EE6B8917BEA6A90030A125 /* NSObject+SPInvocationGrabbing.h */,
+				47EE6B8A17BEA6A90030A125 /* NSObject+SPInvocationGrabbing.m */,
+			);
+			name = SPInvocationGrabbing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,49 +350,12 @@
 			mainGroup = 474D3C2017BBCD7F0034A0E2;
 			productRefGroup = 474D3C2A17BBCD7F0034A0E2 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 47EE6B3317BE38640030A125 /* Products */;
-					ProjectRef = 47EE6B3217BE38640030A125 /* SocketRocket.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				474D3C2817BBCD7F0034A0E2 /* InMac Chat */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		47EE6B3A17BE38640030A125 /* libSocketRocket.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSocketRocket.a;
-			remoteRef = 47EE6B3917BE38640030A125 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		47EE6B3C17BE38640030A125 /* SocketRocket.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SocketRocket.framework;
-			remoteRef = 47EE6B3B17BE38640030A125 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		47EE6B3E17BE38640030A125 /* SRWebSocketTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SRWebSocketTests.octest;
-			remoteRef = 47EE6B3D17BE38640030A125 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		47EE6B4017BE38640030A125 /* TestChat.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = TestChat.app;
-			remoteRef = 47EE6B3F17BE38640030A125 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		474D3C2717BBCD7F0034A0E2 /* Resources */ = {
@@ -383,6 +370,7 @@
 				47EE6B6C17BE64AB0030A125 /* icon_128x128.png in Resources */,
 				47EE6B6D17BE64AB0030A125 /* icon_128x128@2x.png in Resources */,
 				47EE6B6F17BE654C0030A125 /* icon.icns in Resources */,
+				47EE6B7317BE98950030A125 /* radio.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +400,11 @@
 				47EE6B4B17BE39C90030A125 /* base64.c in Sources */,
 				47EE6B4C17BE39C90030A125 /* NSData+SRB64Additions.m in Sources */,
 				47EE6B4D17BE39C90030A125 /* SRWebSocket.m in Sources */,
+				47EE6B8B17BEA6A90030A125 /* NSObject+SPInvocationGrabbing.m in Sources */,
+				47EE6B8E17BEA6B20030A125 /* SPMediaKeyTap.m in Sources */,
+				47EE6B9C17BEC2450030A125 /* MacStreamingPlayerController.m in Sources */,
+				47EE6B9D17BEC2450030A125 /* AudioStreamer.m in Sources */,
+				47EE6BA017BECDF80030A125 /* NewsWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
