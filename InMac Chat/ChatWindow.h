@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <CoreText/CoreText.h>
 
 @interface ChatWindow : NSWindow <NSTableViewDataSource, NSTableViewDelegate>
 

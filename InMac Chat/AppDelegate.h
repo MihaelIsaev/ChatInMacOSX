@@ -10,10 +10,13 @@
 
 #define kInMacShowNotifications @"showNotifications"
 #define kInMacChatUpdateSeconds @"chatUpdateSeconds"
+#define kInMacCountUnreadInDock @"countUnreadInDock"
+#define kInMacPlaySoundIncomingMessage @"playSoundIncomingMessage"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSWindow *windowChat;
 
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -23,5 +26,7 @@
 
 +(id)getObject:(NSString*)key;
 +(void)saveObject:(id)value forKey:(NSString*)key;
++ (NSColor*)colorWithHexColorString:(NSString*)inColorString;
++(void)resetDockBage;
 
 @end

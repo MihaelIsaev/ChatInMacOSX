@@ -30,7 +30,7 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-+(BOOL)contains:(NSString*)contains
+-(BOOL)contains:(NSString*)contains
 {
     return ([[self copy] rangeOfString:contains].location == NSNotFound) ? NO : YES;
 }

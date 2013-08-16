@@ -16,6 +16,7 @@
 @property (unsafe_unretained) IBOutlet NSTextView *textView;
 @property (weak, nonatomic) IBOutlet NSTextField *time;
 @property (weak, nonatomic) IBOutlet NSButton *removeButton;
+@property (weak, nonatomic) IBOutlet NSButton *avatarButton;
 
 -(void)setDate:(NSString*)date;
 

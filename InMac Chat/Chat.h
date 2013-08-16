@@ -14,6 +14,7 @@
 
 - (void)didGetNewMessagesRequest;
 
+@property (nonatomic) NSInteger unreadedMessages;
 @property (strong, nonatomic) NSArray *messages;
 
 @property (weak) IBOutlet NSTextField *messageTextField;
@@ -22,14 +23,20 @@
 
 //Окно настроек
 @property (weak) IBOutlet NSButton *showNotificationsButton;
+@property (weak) IBOutlet NSButton *countUnreadInDockButton;
+@property (weak) IBOutlet NSButton *playSoundIncomingMessageButton;
 @property (weak) IBOutlet NSStepper *chatUpdateSecondsStepper;
 @property (weak) IBOutlet NSTextField *chatUpdateSecondsTextField;
+@property (weak) IBOutlet NSMenuItem *alwaysOnTopMenuItem;
 @property (weak) IBOutlet NSButton *settingsButton;
+@property (weak) IBOutlet NSPopover *popover;
 
 - (IBAction)changeShowNotifications:(id)sender;
+- (IBAction)changeCountUnreadInDock:(id)sender;
+- (IBAction)changePlaySoundIncomingMessage:(id)sender;
 - (IBAction)changeChatUpdateSeconds:(id)sender;
+- (IBAction)changeAlwaysOnTop:(id)sender;
 - (IBAction)openSettings:(id)sender;
-@property (weak) IBOutlet NSPopover *popover;
 
 - (void)didDeleteMessageRequestFromRow:(NSInteger)row;
 

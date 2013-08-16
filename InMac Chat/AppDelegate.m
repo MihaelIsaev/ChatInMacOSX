@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Login.h"
+#import "Chat.h"
 
 @implementation AppDelegate
 
@@ -17,8 +18,24 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
     [[Login shared] didLogin:nil];
+}
+
+-(void)applicationDidBecomeActive:(NSNotification *)notification
+{
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    [AppDelegate resetDockBage];
+}
+
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+{
+    if(flag)
+        return NO;
+    else
+    {
+        [self.windowChat setIsVisible:YES];
+        return YES;
+    }
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "com.mihaelisaev.InMac_Chat" in the user's Application Support directory.
@@ -191,6 +208,36 @@
 {
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSColor*)colorWithHexColorString:(NSString*)inColorString
+{
+    NSColor* result = nil;
+    unsigned colorCode = 0;
+    unsigned char redByte, greenByte, blueByte;
+    
+    if (nil != inColorString)
+    {
+        NSScanner* scanner = [NSScanner scannerWithString:inColorString];
+        (void) [scanner scanHexInt:&colorCode]; // ignore error
+    }
+    redByte = (unsigned char)(colorCode >> 16);
+    greenByte = (unsigned char)(colorCode >> 8);
+    blueByte = (unsigned char)(colorCode); // masks off high bits
+    
+    result = [NSColor
+              colorWithCalibratedRed:(CGFloat)redByte / 0xff
+              green:(CGFloat)greenByte / 0xff
+              blue:(CGFloat)blueByte / 0xff
+              alpha:1.0];
+    return result;
+}
+
++(void)resetDockBage
+{
+    [[Chat shared] setUnreadedMessages:0];
+    NSDockTile *tile = [[NSApplication sharedApplication] dockTile];
+    [tile setBadgeLabel:@""];
 }
 
 @end

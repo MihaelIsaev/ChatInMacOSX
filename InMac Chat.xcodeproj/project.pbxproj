@@ -22,7 +22,14 @@
 		47EE6AB217BD15A10030A125 /* ChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6AB117BD15A10030A125 /* ChatMessageCell.m */; };
 		47EE6AC917BD25D20030A125 /* NSString+Magic.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6AC817BD25D20030A125 /* NSString+Magic.m */; };
 		47EE6ACF17BD585B0030A125 /* SettingsWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6ACE17BD585B0030A125 /* SettingsWindow.m */; };
-		47EE6AD317BD60780030A125 /* inmac-logo.icns in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6AD217BD60780030A125 /* inmac-logo.icns */; };
+		47EE6AD517BD672E0030A125 /* tick.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6AD417BD672D0030A125 /* tick.aiff */; };
+		47EE6ADA17BD76E00030A125 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6AD717BD76E00030A125 /* HTMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		47EE6ADB17BD76E00030A125 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6AD917BD76E00030A125 /* HTMLParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		47EE6ADD17BD77B70030A125 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE6ADC17BD77B70030A125 /* libxml2.2.dylib */; };
+		47EE6ADF17BD7CD40030A125 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6ADE17BD7CD40030A125 /* icon.icns */; };
+		47EE6AE117BD82E80030A125 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47EE6AE017BD82E80030A125 /* CoreText.framework */; };
+		47EE6AE417BD97E60030A125 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6AE317BD97E60030A125 /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		47EE6AE717BD98360030A125 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6AE617BD98360030A125 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +62,18 @@
 		47EE6AC817BD25D20030A125 /* NSString+Magic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Magic.m"; sourceTree = "<group>"; };
 		47EE6ACD17BD585B0030A125 /* SettingsWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsWindow.h; sourceTree = "<group>"; };
 		47EE6ACE17BD585B0030A125 /* SettingsWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsWindow.m; sourceTree = "<group>"; };
-		47EE6AD217BD60780030A125 /* inmac-logo.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "inmac-logo.icns"; path = "../inmac-logo.icns"; sourceTree = "<group>"; };
+		47EE6AD417BD672D0030A125 /* tick.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = tick.aiff; sourceTree = "<group>"; };
+		47EE6AD617BD76E00030A125 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLNode.h; sourceTree = "<group>"; };
+		47EE6AD717BD76E00030A125 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLNode.m; sourceTree = "<group>"; };
+		47EE6AD817BD76E00030A125 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLParser.h; sourceTree = "<group>"; };
+		47EE6AD917BD76E00030A125 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
+		47EE6ADC17BD77B70030A125 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		47EE6ADE17BD7CD40030A125 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../icon.icns; sourceTree = "<group>"; };
+		47EE6AE017BD82E80030A125 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		47EE6AE217BD97E60030A125 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		47EE6AE317BD97E60030A125 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		47EE6AE517BD98360030A125 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		47EE6AE617BD98360030A125 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47EE6AE117BD82E80030A125 /* CoreText.framework in Frameworks */,
+				47EE6ADD17BD77B70030A125 /* libxml2.2.dylib in Frameworks */,
 				474D3C2D17BBCD7F0034A0E2 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +110,8 @@
 		474D3C2B17BBCD7F0034A0E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47EE6AE017BD82E80030A125 /* CoreText.framework */,
+				47EE6ADC17BD77B70030A125 /* libxml2.2.dylib */,
 				474D3C2F17BBCD7F0034A0E2 /* AppKit.framework */,
 				474D3C3017BBCD7F0034A0E2 /* CoreData.framework */,
 				474D3C3117BBCD7F0034A0E2 /* Foundation.framework */,
@@ -125,10 +147,19 @@
 		474D3C3317BBCD7F0034A0E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				47EE6ADE17BD7CD40030A125 /* icon.icns */,
+				47EE6AD417BD672D0030A125 /* tick.aiff */,
 				47EE6AC717BD25D20030A125 /* NSString+Magic.h */,
 				47EE6AC817BD25D20030A125 /* NSString+Magic.m */,
-				47EE6AD217BD60780030A125 /* inmac-logo.icns */,
+				47EE6AE217BD97E60030A125 /* NSString+HTML.h */,
+				47EE6AE317BD97E60030A125 /* NSString+HTML.m */,
+				47EE6AE517BD98360030A125 /* GTMNSString+HTML.h */,
+				47EE6AE617BD98360030A125 /* GTMNSString+HTML.m */,
 				474D3C4C17BBD6570034A0E2 /* inmac-logo.png */,
+				47EE6AD617BD76E00030A125 /* HTMLNode.h */,
+				47EE6AD717BD76E00030A125 /* HTMLNode.m */,
+				47EE6AD817BD76E00030A125 /* HTMLParser.h */,
+				47EE6AD917BD76E00030A125 /* HTMLParser.m */,
 				474D3C3417BBCD7F0034A0E2 /* InMac Chat-Info.plist */,
 				474D3C3517BBCD7F0034A0E2 /* InfoPlist.strings */,
 				474D3C3817BBCD7F0034A0E2 /* main.m */,
@@ -193,7 +224,8 @@
 				474D3C3D17BBCD7F0034A0E2 /* Credits.rtf in Resources */,
 				474D3C4317BBCD7F0034A0E2 /* MainMenu.xib in Resources */,
 				474D3C4D17BBD6570034A0E2 /* inmac-logo.png in Resources */,
-				47EE6AD317BD60780030A125 /* inmac-logo.icns in Resources */,
+				47EE6AD517BD672E0030A125 /* tick.aiff in Resources */,
+				47EE6ADF17BD7CD40030A125 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +246,10 @@
 				47EE6AB217BD15A10030A125 /* ChatMessageCell.m in Sources */,
 				47EE6AC917BD25D20030A125 /* NSString+Magic.m in Sources */,
 				47EE6ACF17BD585B0030A125 /* SettingsWindow.m in Sources */,
+				47EE6ADA17BD76E00030A125 /* HTMLNode.m in Sources */,
+				47EE6ADB17BD76E00030A125 /* HTMLParser.m in Sources */,
+				47EE6AE417BD97E60030A125 /* NSString+HTML.m in Sources */,
+				47EE6AE717BD98360030A125 /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +348,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InMac Chat/InMac Chat-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "InMac Chat/InMac Chat-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -325,6 +362,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InMac Chat/InMac Chat-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "InMac Chat/InMac Chat-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
