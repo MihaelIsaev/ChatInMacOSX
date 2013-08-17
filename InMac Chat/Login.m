@@ -10,6 +10,7 @@
 #import "Chat.h"
 #import "HTMLParser.h"
 #import "NSString+Magic.h"
+#import "INAppStoreWindow.h"
 
 @interface Login ()
 
@@ -38,6 +39,12 @@ static Login *shared;
 
 - (IBAction)didLogin:(id)sender
 {
+    INAppStoreWindow *lgWindow = (INAppStoreWindow*)self.loginWindow;
+    lgWindow.titleBarHeight = 50.0;
+    self.loginTtlView.frame = lgWindow.titleBarView.bounds;
+    self.ttlView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+    [lgWindow.titleBarView addSubview:self.loginTtlView];
+    
     [self didStartLogining];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             NSError *error = nil;
@@ -161,6 +168,12 @@ static Login *shared;
         [self.loginWindow close];
         [self.chatWindow setIsVisible:YES];
         [[Chat shared] didGetNewMessagesRequest];
+        // Change TitleBar height and attach view
+        INAppStoreWindow *chatWindow = (INAppStoreWindow*)self.chatWindow;
+        chatWindow.titleBarHeight = 50.0;
+        self.ttlView.frame = chatWindow.titleBarView.bounds;
+        self.ttlView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+        [chatWindow.titleBarView addSubview:self.ttlView];
     }
     else
     {

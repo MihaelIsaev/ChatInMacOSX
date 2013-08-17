@@ -16,4 +16,8 @@
     return [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
 }
 
+- (IBAction)didForgotPassword:(id)sender {
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://inmac.org/profile.php?mode=sendpassword"]]];
+}
+
 @end

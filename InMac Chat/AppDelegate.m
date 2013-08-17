@@ -12,6 +12,7 @@
 #import "NSString+Magic.h"
 #import "SPMediaKeyTap.h"
 #import "MacStreamingPlayerController.h"
+#import "INAppStoreWindow.h"
 
 static AppDelegate *sharedInstance;
 

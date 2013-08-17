@@ -220,6 +220,8 @@ static Chat *shared;
             [self playNewIncomingMessageSound];
             [self didRecalculateBage:messages];
             self.lastMessageID = [[messages objectAtIndex:0] objectForKey:@"id"];
+            
+            [self.chatScroll.contentView scrollToPoint:NSMakePoint(0, ((NSView*)self.chatScroll.documentView).frame.size.height - self.chatScroll.contentSize.height)];
         }
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             sleep([[AppDelegate getObject:kInMacChatUpdateSeconds] floatValue]);
@@ -242,6 +244,7 @@ static Chat *shared;
     if(!self.moc)
         self.moc = [self.tempContext get];
     self.messages = [[self.entityMessages getAll:self.moc] copy];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessages" object:nil];
 }
 

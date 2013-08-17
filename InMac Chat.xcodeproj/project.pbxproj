@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2567B85617BEDC6000C09C51 /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2567B85517BEDC6000C09C51 /* INAppStoreWindow.m */; };
+		2567B85917BEDCBB00C09C51 /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2567B85817BEDCBB00C09C51 /* INWindowButton.m */; };
+		2567B85B17BFAE4A00C09C51 /* toolbar_icon_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 2567B85A17BFAE4A00C09C51 /* toolbar_icon_user.png */; };
+		2567B85F17BFBFBB00C09C51 /* toolbar_icon_user_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 2567B85E17BFBFBB00C09C51 /* toolbar_icon_user_pressed.png */; };
+		2567B86517BFDB0200C09C51 /* NSImage+RHImageRepresentationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2567B86217BFDB0200C09C51 /* NSImage+RHImageRepresentationAdditions.m */; };
+		2567B86617BFDB0200C09C51 /* NSImage+RHResizableImageAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2567B86417BFDB0200C09C51 /* NSImage+RHResizableImageAdditions.m */; };
+		2567B86D17BFF84E00C09C51 /* KBTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2567B86A17BFF84E00C09C51 /* KBTextField.m */; };
+		2567B86E17BFF84E00C09C51 /* KBTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2567B86C17BFF84E00C09C51 /* KBTextFieldCell.m */; };
+		2567B87117BFF93900C09C51 /* KBSecureTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2567B87017BFF93900C09C51 /* KBSecureTextField.m */; };
+		2567B87417BFF9F500C09C51 /* KBSecureTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2567B87317BFF9F500C09C51 /* KBSecureTextFieldCell.m */; };
+		2567B87617C0034500C09C51 /* WindowTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2567B87517C0034500C09C51 /* WindowTitle.png */; };
 		474D3C3717BBCD7F0034A0E2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 474D3C3517BBCD7F0034A0E2 /* InfoPlist.strings */; };
 		474D3C3917BBCD7F0034A0E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D3C3817BBCD7F0034A0E2 /* main.m */; };
 		474D3C3D17BBCD7F0034A0E2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 474D3C3B17BBCD7F0034A0E2 /* Credits.rtf */; };
@@ -54,6 +65,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2567B85417BEDC6000C09C51 /* INAppStoreWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindow.h; sourceTree = "<group>"; };
+		2567B85517BEDC6000C09C51 /* INAppStoreWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INAppStoreWindow.m; sourceTree = "<group>"; };
+		2567B85717BEDCBB00C09C51 /* INWindowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INWindowButton.h; sourceTree = "<group>"; };
+		2567B85817BEDCBB00C09C51 /* INWindowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INWindowButton.m; sourceTree = "<group>"; };
+		2567B85A17BFAE4A00C09C51 /* toolbar_icon_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_icon_user.png; sourceTree = "<group>"; };
+		2567B85E17BFBFBB00C09C51 /* toolbar_icon_user_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toolbar_icon_user_pressed.png; sourceTree = "<group>"; };
+		2567B86117BFDB0200C09C51 /* NSImage+RHImageRepresentationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+RHImageRepresentationAdditions.h"; sourceTree = "<group>"; };
+		2567B86217BFDB0200C09C51 /* NSImage+RHImageRepresentationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+RHImageRepresentationAdditions.m"; sourceTree = "<group>"; };
+		2567B86317BFDB0200C09C51 /* NSImage+RHResizableImageAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+RHResizableImageAdditions.h"; sourceTree = "<group>"; };
+		2567B86417BFDB0200C09C51 /* NSImage+RHResizableImageAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+RHResizableImageAdditions.m"; sourceTree = "<group>"; };
+		2567B86717BFDB2300C09C51 /* RHARCSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHARCSupport.h; sourceTree = "<group>"; };
+		2567B86917BFF84E00C09C51 /* KBTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTextField.h; sourceTree = "<group>"; };
+		2567B86A17BFF84E00C09C51 /* KBTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTextField.m; sourceTree = "<group>"; };
+		2567B86B17BFF84E00C09C51 /* KBTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTextFieldCell.h; sourceTree = "<group>"; };
+		2567B86C17BFF84E00C09C51 /* KBTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTextFieldCell.m; sourceTree = "<group>"; };
+		2567B86F17BFF93900C09C51 /* KBSecureTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSecureTextField.h; sourceTree = "<group>"; };
+		2567B87017BFF93900C09C51 /* KBSecureTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSecureTextField.m; sourceTree = "<group>"; };
+		2567B87217BFF9F500C09C51 /* KBSecureTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBSecureTextFieldCell.h; sourceTree = "<group>"; };
+		2567B87317BFF9F500C09C51 /* KBSecureTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBSecureTextFieldCell.m; sourceTree = "<group>"; };
+		2567B87517C0034500C09C51 /* WindowTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WindowTitle.png; sourceTree = "<group>"; };
 		474D3C2917BBCD7F0034A0E2 /* InMac Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InMac Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		474D3C2C17BBCD7F0034A0E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		474D3C2F17BBCD7F0034A0E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -152,6 +183,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2567B85317BEDC5000C09C51 /* InAppStoreWindow */ = {
+			isa = PBXGroup;
+			children = (
+				2567B85717BEDCBB00C09C51 /* INWindowButton.h */,
+				2567B85817BEDCBB00C09C51 /* INWindowButton.m */,
+				2567B85417BEDC6000C09C51 /* INAppStoreWindow.h */,
+				2567B85517BEDC6000C09C51 /* INAppStoreWindow.m */,
+			);
+			name = InAppStoreWindow;
+			sourceTree = "<group>";
+		};
+		2567B86017BFDACA00C09C51 /* RHAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				2567B86717BFDB2300C09C51 /* RHARCSupport.h */,
+				2567B86117BFDB0200C09C51 /* NSImage+RHImageRepresentationAdditions.h */,
+				2567B86217BFDB0200C09C51 /* NSImage+RHImageRepresentationAdditions.m */,
+				2567B86317BFDB0200C09C51 /* NSImage+RHResizableImageAdditions.h */,
+				2567B86417BFDB0200C09C51 /* NSImage+RHResizableImageAdditions.m */,
+			);
+			name = RHAdditions;
+			sourceTree = "<group>";
+		};
+		2567B86817BFF84E00C09C51 /* KBtextField */ = {
+			isa = PBXGroup;
+			children = (
+				2567B86917BFF84E00C09C51 /* KBTextField.h */,
+				2567B86A17BFF84E00C09C51 /* KBTextField.m */,
+				2567B86B17BFF84E00C09C51 /* KBTextFieldCell.h */,
+				2567B86C17BFF84E00C09C51 /* KBTextFieldCell.m */,
+				2567B86F17BFF93900C09C51 /* KBSecureTextField.h */,
+				2567B87017BFF93900C09C51 /* KBSecureTextField.m */,
+				2567B87217BFF9F500C09C51 /* KBSecureTextFieldCell.h */,
+				2567B87317BFF9F500C09C51 /* KBSecureTextFieldCell.m */,
+			);
+			path = KBtextField;
+			sourceTree = "<group>";
+		};
 		474D3C2017BBCD7F0034A0E2 = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +314,9 @@
 		47EE6B1917BE13980030A125 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				2567B87517C0034500C09C51 /* WindowTitle.png */,
+				2567B85E17BFBFBB00C09C51 /* toolbar_icon_user_pressed.png */,
+				2567B85A17BFAE4A00C09C51 /* toolbar_icon_user.png */,
 				47EE6B6A17BE64AB0030A125 /* icon_128x128.png */,
 				47EE6B6B17BE64AB0030A125 /* icon_128x128@2x.png */,
 				47EE6B6E17BE654C0030A125 /* icon.icns */,
@@ -258,6 +330,9 @@
 		47EE6B1A17BE13BD0030A125 /* Includes */ = {
 			isa = PBXGroup;
 			children = (
+				2567B86817BFF84E00C09C51 /* KBtextField */,
+				2567B86017BFDACA00C09C51 /* RHAdditions */,
+				2567B85317BEDC5000C09C51 /* InAppStoreWindow */,
 				47EE6B9917BEC2450030A125 /* MacStreamingPlayerController.h */,
 				47EE6B9817BEC2450030A125 /* MacStreamingPlayerController.m */,
 				47EE6B9A17BEC2450030A125 /* AudioStreamer.h */,
@@ -371,6 +446,9 @@
 				47EE6B6D17BE64AB0030A125 /* icon_128x128@2x.png in Resources */,
 				47EE6B6F17BE654C0030A125 /* icon.icns in Resources */,
 				47EE6B7317BE98950030A125 /* radio.png in Resources */,
+				2567B85B17BFAE4A00C09C51 /* toolbar_icon_user.png in Resources */,
+				2567B85F17BFBFBB00C09C51 /* toolbar_icon_user_pressed.png in Resources */,
+				2567B87617C0034500C09C51 /* WindowTitle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +483,14 @@
 				47EE6B9C17BEC2450030A125 /* MacStreamingPlayerController.m in Sources */,
 				47EE6B9D17BEC2450030A125 /* AudioStreamer.m in Sources */,
 				47EE6BA017BECDF80030A125 /* NewsWindow.m in Sources */,
+				2567B85617BEDC6000C09C51 /* INAppStoreWindow.m in Sources */,
+				2567B85917BEDCBB00C09C51 /* INWindowButton.m in Sources */,
+				2567B86517BFDB0200C09C51 /* NSImage+RHImageRepresentationAdditions.m in Sources */,
+				2567B86617BFDB0200C09C51 /* NSImage+RHResizableImageAdditions.m in Sources */,
+				2567B86D17BFF84E00C09C51 /* KBTextField.m in Sources */,
+				2567B86E17BFF84E00C09C51 /* KBTextFieldCell.m in Sources */,
+				2567B87117BFF93900C09C51 /* KBSecureTextField.m in Sources */,
+				2567B87417BFF9F500C09C51 /* KBSecureTextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -21,6 +21,8 @@
 @property (weak) IBOutlet NSSecureTextField *passwordTextField;
 @property (weak) IBOutlet NSButton *loginButton;
 @property (weak) IBOutlet NSMenuItem *logoutMenuItem;
+@property (weak) IBOutlet NSView *ttlView;
+@property (weak) IBOutlet NSView *loginTtlView;
 
 - (IBAction)didLogin:(id)sender;
 - (IBAction)didLogout:(id)sender;

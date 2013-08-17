@@ -7,8 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "INAppStoreWindow.h"
 
-@interface ChatWindow : NSWindow <NSTableViewDataSource, NSTableViewDelegate>
+@interface ChatWindow : INAppStoreWindow <NSTableViewDataSource, NSTableViewDelegate> {
+    
+}
 
 @property (weak) IBOutlet NSTableView *messagesTable;
 - (IBAction)removeMessage:(id)sender;

@@ -7,7 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "INAppStoreWindow.h"
 
-@interface LoginWindow : NSWindow
+@interface LoginWindow : INAppStoreWindow
+
+- (IBAction)didForgotPassword:(id)sender;
 
 @end

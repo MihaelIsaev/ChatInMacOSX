@@ -32,6 +32,7 @@
 @property (weak) IBOutlet NSMenuItem *alwaysOnTopMenuItem;
 @property (weak) IBOutlet NSButton *settingsButton;
 @property (weak) IBOutlet NSPopover *popover;
+@property (weak) IBOutlet NSScrollView *chatScroll;
 
 - (IBAction)changeShowNotifications:(id)sender;
 - (IBAction)changeCountUnreadInDock:(id)sender;
