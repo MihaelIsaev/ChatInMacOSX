@@ -103,9 +103,9 @@ static Chat *shared;
     if([action isEqualToString:@"clickOnUser"])
     {
         if(self.chatWindow.messageTextField.stringValue.length==0)
-            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"[b]%@[/b]: ", [[self urldecode:value] replace:@":[/b]" to:@"[/b]"]];
+            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"[b]%@[/b]: ", [[self urldecode:value] replace:@":" to:@""]];
         else
-            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"%@, [b]%@[/b]: ", [self.chatWindow.messageTextField.stringValue replace:@"[/b]: " to:@"[/b]"], [[self urldecode:value] replace:@":[/b]" to:@"[/b]"]];
+            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"%@, [b]%@[/b]: ", [self.chatWindow.messageTextField.stringValue replace:@"[/b]: " to:@"[/b]"], [[self urldecode:value] replace:@":" to:@""]];
         [self.chatWindow.messageTextField becomeFirstResponder];
         [[self.chatWindow.messageTextField currentEditor] moveToEndOfLine:nil];
     }
