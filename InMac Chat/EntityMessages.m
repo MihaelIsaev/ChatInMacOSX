@@ -89,7 +89,7 @@ static NSString * const keyUserClass = @"userClass";
     @synchronized (temp)
     {
         NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
-        NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:keyTime ascending:NO];
+        NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:keyTime ascending:YES];
         NSArray *sortDescriptors = [NSArray arrayWithObject:sd];
         [fetch setSortDescriptors:sortDescriptors];
         NSEntityDescription *entity = [NSEntityDescription entityForName:[self getTableName] inManagedObjectContext:moc];

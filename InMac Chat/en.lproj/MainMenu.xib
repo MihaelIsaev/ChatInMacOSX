@@ -524,6 +524,7 @@
 							<string key="NSFrame">{{0, -29}, {122, 19}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="224912945">
@@ -761,7 +762,7 @@
 														<string key="NSFrame">{{1, 261}, {643, 16}}</string>
 														<reference key="NSSuperview" ref="637677379"/>
 														<reference key="NSWindow"/>
-														<reference key="NSNextKeyView" ref="865985642"/>
+														<reference key="NSNextKeyView"/>
 														<string key="NSReuseIdentifierKey">_NS:60</string>
 														<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 														<int key="NSsFlags">1</int>
@@ -1164,6 +1165,9 @@
 			<object class="NSCustomObject" id="1068387935">
 				<string key="NSClassName">Radio</string>
 			</object>
+			<object class="NSCustomObject" id="864487244">
+				<string key="NSClassName">SUUpdater</string>
+			</object>
 			<object class="NSWindowTemplate" id="941898895">
 				<int key="NSWindowStyleMask">265</int>
 				<int key="NSWindowBacking">2</int>
@@ -1372,6 +1376,7 @@
 							<string key="NSFrame">{{64, 20}, {242, 17}}</string>
 							<reference key="NSSuperview" ref="21501541"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="239764575">
@@ -2687,6 +2692,7 @@
 							<string key="NSFrame">{{170, 13}, {33, 37}}</string>
 							<reference key="NSSuperview" ref="183248414"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="185748541">
@@ -11763,6 +11769,11 @@
 						<reference key="object" ref="345593451"/>
 						<reference key="parent" ref="458421081"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">4176</int>
+						<reference key="object" ref="864487244"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -12683,6 +12694,7 @@
 				<string key="4164.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="4165.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="4166.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="4176.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="420.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="494.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="536.IBNSViewMetadataTranslatesAutoresizingMaskIntoConstraints"/>
@@ -12785,7 +12797,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">4175</int>
+			<int key="maxID">4176</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -13245,6 +13257,36 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/Radio.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SUUpdater</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">checkForUpdates:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">checkForUpdates:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">delegate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">delegate</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">delegate</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SUUpdater.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

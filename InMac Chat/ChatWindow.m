@@ -36,6 +36,8 @@
 -(void)reloadData
 {
     [self.messagesTable reloadData];
+    if ([self.messagesTable numberOfRows] > 0)
+        [self.messagesTable scrollRowToVisible:[self.messagesTable numberOfRows] - 1];
 }
 
 -(NSAttributedString*)attributedMessageTextForRow:(NSInteger)row
@@ -57,7 +59,7 @@
     HTMLNode *userBodyNode = [parserUser doc];
     HTMLNode *textBodyNode = [parserText doc];
     NSString *text = [[textBodyNode allContents] trim];
-    NSString *user = [NSString stringWithFormat:@"%@::", [userBodyNode allContents]];
+    NSString *user = [NSString stringWithFormat:@"%@:", [userBodyNode allContents]];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     [attributedString appendAttributedString: [[NSAttributedString alloc] initWithString:user]];
     [attributedString appendAttributedString: [[NSAttributedString alloc] initWithString:@"  "]];
@@ -80,9 +82,9 @@
     for(HTMLNode *bTextNode in [textBodyNode findChildrenOfClass:@"post-b"])
     {
         [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Verdana-Bold" size:11.0f] range:[attributedString.string rangeOfString:[bTextNode allContents]]];
-        [attributedString addAttribute:NSLinkAttributeName
+        /*[attributedString addAttribute:NSLinkAttributeName
                                  value:[NSString stringWithFormat:@"inmac://clickOnUser~%@", [bTextNode allContents]]
-                                 range:[attributedString.string rangeOfString:[bTextNode allContents]]];
+                                 range:[attributedString.string rangeOfString:[bTextNode allContents]]];*/
     }
     //NSLog(@"text: %@", attributedString.string);
     return attributedString;
@@ -98,7 +100,7 @@
 {
     NSAttributedString *attributedString = [self attributedMessageTextForRow:row];
     NSTableColumn *tableColoumn = [self.messagesTable tableColumnWithIdentifier:@"MessageColumn"];
-    NSRect stringRect = [attributedString boundingRectWithSize:CGSizeMake([tableColoumn width], CGFLOAT_MAX)
+    NSRect stringRect = [attributedString boundingRectWithSize:CGSizeMake([tableColoumn width]-139, CGFLOAT_MAX)
                                                        options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading];
     CGFloat heightOfRow = stringRect.size.height+10.0f;
     return (heightOfRow<46.0f)?50.0f:heightOfRow;
@@ -116,17 +118,22 @@
     ChatMessageCell *cellView = [tableView makeViewWithIdentifier:@"MessageCell" owner:self];
     EntityMessages *message = [[[Chat shared] messages] objectAtIndex:row];
     //аватар
-    NSString *imageURLString = [NSString stringWithFormat:@"http://static.inmac.org/avatars/%@", (message.avatar.length>0)?message.avatar:@"guest.png"];
-    if(![AppDelegate getObject:imageURLString])
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            NSURL *imageURL = [NSURL URLWithString:imageURLString];
-            [AppDelegate saveObject:[NSData dataWithContentsOfURL:imageURL] forKey:imageURLString];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cellView.avatarButton.image = [[NSImage alloc] initWithData:[AppDelegate getObject:imageURLString]];
+    if(message.avatar.length>0)
+    {
+        NSString *imageURLString = [NSString stringWithFormat:@"http://static.inmac.org/avatars/%@", message.avatar];
+        if(![AppDelegate getObject:imageURLString])
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+                NSURL *imageURL = [NSURL URLWithString:imageURLString];
+                [AppDelegate saveObject:[NSData dataWithContentsOfURL:imageURL] forKey:imageURLString];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cellView.avatarImageView.image = [[NSImage alloc] initWithData:[AppDelegate getObject:imageURLString]];
+                });
             });
-        });
+        else
+            cellView.avatarImageView.image = [[NSImage alloc] initWithData:[AppDelegate getObject:imageURLString]];
+    }
     else
-        cellView.avatarButton.image = [[NSImage alloc] initWithData:[AppDelegate getObject:imageURLString]];
+        cellView.avatarImageView.image = [NSImage imageNamed:@"no-avatar"];
     [cellView setDate:message.time.stringValue];
     [cellView.textView.textStorage setAttributedString:[self attributedMessageTextForRow:row]];
     [cellView.textView setLinkTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -189,10 +196,12 @@
     }
 }
 
-#pragma mark - NSTabView Delegate
-- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
+- (IBAction)changeView:(NSSegmentedControl*)sender
 {
-    if([tabViewItem.identifier intValue]==2)
+    [self.chatView setHidden:(sender.selectedSegment!=0)];
+    [self.newsView setHidden:(sender.selectedSegment!=1)];
+    [self.radioView setHidden:(sender.selectedSegment!=2)];
+    if(sender.selectedSegment==1)
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshNews" object:nil];
 }
 

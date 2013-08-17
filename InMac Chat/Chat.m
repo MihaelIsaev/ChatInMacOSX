@@ -103,9 +103,9 @@ static Chat *shared;
     if([action isEqualToString:@"clickOnUser"])
     {
         if(self.chatWindow.messageTextField.stringValue.length==0)
-            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"[b]%@[/b]: ", [[self urldecode:value] replace:@"::" to:@""]];
+            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"[b]%@[/b]: ", [[self urldecode:value] replace:@":[/b]" to:@"[/b]"]];
         else
-            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"%@, [b]%@[/b]: ", [self.chatWindow.messageTextField.stringValue replace:@"[/b]: " to:@"[/b]"], [[self urldecode:value] replace:@"::" to:@""]];
+            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"%@, [b]%@[/b]: ", [self.chatWindow.messageTextField.stringValue replace:@"[/b]: " to:@"[/b]"], [[self urldecode:value] replace:@":[/b]" to:@"[/b]"]];
         [self.chatWindow.messageTextField becomeFirstResponder];
         [[self.chatWindow.messageTextField currentEditor] moveToEndOfLine:nil];
     }
@@ -144,6 +144,8 @@ static Chat *shared;
 
 - (void)didSendMessageRequest
 {
+    if(self.chatWindow.messageTextField.stringValue.length==0)
+        return;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://inmac.org/json/chat/"]];
     NSString *paramsString = [NSString stringWithFormat:@"msg=%@", self.chatWindow.messageTextField.stringValue];
     [request setHTTPBody:[paramsString dataUsingEncoding:NSUTF8StringEncoding]];

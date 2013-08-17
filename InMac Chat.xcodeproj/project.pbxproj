@@ -13,6 +13,11 @@
 		474D3C4017BBCD7F0034A0E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 474D3C3F17BBCD7F0034A0E2 /* AppDelegate.m */; };
 		474D3C4317BBCD7F0034A0E2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 474D3C4117BBCD7F0034A0E2 /* MainMenu.xib */; };
 		474D3C4617BBCD7F0034A0E2 /* InMac_Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 474D3C4417BBCD7F0034A0E2 /* InMac_Chat.xcdatamodeld */; };
+		47527E4E17C014C500211816 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47527E4D17C014C500211816 /* Sparkle.framework */; };
+		47527E5017C0152700211816 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 47527E4D17C014C500211816 /* Sparkle.framework */; };
+		47527E5517C01EDA00211816 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 47527E5417C01EDA00211816 /* dsa_pub.pem */; };
+		47527E5817C0335800211816 /* no-avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 47527E5617C0335800211816 /* no-avatar.png */; };
+		47527E5917C0335800211816 /* no-avatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 47527E5717C0335800211816 /* no-avatar@2x.png */; };
 		47EE6AA117BCE9860030A125 /* LoginWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6AA017BCE9860030A125 /* LoginWindow.m */; };
 		47EE6AA417BCE9B80030A125 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6AA317BCE9B80030A125 /* Login.m */; };
 		47EE6AA717BCF9710030A125 /* ChatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6AA617BCF9710030A125 /* ChatWindow.m */; };
@@ -52,7 +57,6 @@
 		47EE6B9D17BEC2450030A125 /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6B9B17BEC2450030A125 /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		47EE6BA017BECDF80030A125 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6B9F17BECDF70030A125 /* News.m */; };
 		47EE6BA617BF7FDA0030A125 /* ChatMessageCellTextScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6BA517BF7FD90030A125 /* ChatMessageCellTextScrollView.m */; };
-		47EE6BA917BF899A0030A125 /* WhiteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6BA817BF89990030A125 /* WhiteView.m */; };
 		47EE6BCA17BF9BE50030A125 /* mail.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6BAE17BF9BE50030A125 /* mail.gif */; };
 		47EE6BCB17BF9BE50030A125 /* lock.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6BAF17BF9BE50030A125 /* lock.gif */; };
 		47EE6BCC17BF9BE50030A125 /* likeff.gif in Resources */ = {isa = PBXBuildFile; fileRef = 47EE6BB017BF9BE50030A125 /* likeff.gif */; };
@@ -85,6 +89,19 @@
 		47EE6BEB17BFE5820030A125 /* NewsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 47EE6BEA17BFE5810030A125 /* NewsTableCell.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		47527E4F17C014F000211816 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				47527E5017C0152700211816 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		474D3C2917BBCD7F0034A0E2 /* InMac Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InMac Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		474D3C2C17BBCD7F0034A0E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -92,14 +109,18 @@
 		474D3C3017BBCD7F0034A0E2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		474D3C3117BBCD7F0034A0E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		474D3C3417BBCD7F0034A0E2 /* InMac Chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InMac Chat-Info.plist"; sourceTree = "<group>"; };
-		474D3C3617BBCD7F0034A0E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		474D3C3817BBCD7F0034A0E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		474D3C3A17BBCD7F0034A0E2 /* InMac Chat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InMac Chat-Prefix.pch"; sourceTree = "<group>"; };
-		474D3C3C17BBCD7F0034A0E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		474D3C3E17BBCD7F0034A0E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		474D3C3F17BBCD7F0034A0E2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		474D3C4217BBCD7F0034A0E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		474D3C4517BBCD7F0034A0E2 /* InMac_Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InMac_Chat.xcdatamodel; sourceTree = "<group>"; };
+		47527E4D17C014C500211816 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		47527E5117C0187500211816 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ru; path = ru.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		47527E5217C0187500211816 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		47527E5317C0187500211816 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = ru; path = ru.lproj/Credits.rtf; sourceTree = "<group>"; };
+		47527E5417C01EDA00211816 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		47527E5617C0335800211816 /* no-avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-avatar.png"; sourceTree = "<group>"; };
+		47527E5717C0335800211816 /* no-avatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-avatar@2x.png"; sourceTree = "<group>"; };
 		47EE6A9F17BCE9860030A125 /* LoginWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWindow.h; sourceTree = "<group>"; };
 		47EE6AA017BCE9860030A125 /* LoginWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindow.m; sourceTree = "<group>"; };
 		47EE6AA217BCE9B80030A125 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
@@ -162,8 +183,6 @@
 		47EE6B9F17BECDF70030A125 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		47EE6BA417BF7FD80030A125 /* ChatMessageCellTextScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageCellTextScrollView.h; sourceTree = "<group>"; };
 		47EE6BA517BF7FD90030A125 /* ChatMessageCellTextScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageCellTextScrollView.m; sourceTree = "<group>"; };
-		47EE6BA717BF89980030A125 /* WhiteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhiteView.h; sourceTree = "<group>"; };
-		47EE6BA817BF89990030A125 /* WhiteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhiteView.m; sourceTree = "<group>"; };
 		47EE6BAE17BF9BE50030A125 /* mail.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mail.gif; sourceTree = "<group>"; };
 		47EE6BAF17BF9BE50030A125 /* lock.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lock.gif; sourceTree = "<group>"; };
 		47EE6BB017BF9BE50030A125 /* likeff.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = likeff.gif; sourceTree = "<group>"; };
@@ -214,6 +233,7 @@
 				47EE6B5217BE3A750030A125 /* CFNetwork.framework in Frameworks */,
 				47EE6B5017BE3A670030A125 /* libicucore.dylib in Frameworks */,
 				47EE6ADD17BD77B70030A125 /* libxml2.2.dylib in Frameworks */,
+				47527E4E17C014C500211816 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +260,7 @@
 		474D3C2B17BBCD7F0034A0E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				47527E4D17C014C500211816 /* Sparkle.framework */,
 				47EE6ADC17BD77B70030A125 /* libxml2.2.dylib */,
 				47EE6B4F17BE3A670030A125 /* libicucore.dylib */,
 				47EE6B9617BEA7B30030A125 /* QuartzCore.framework */,
@@ -270,8 +291,6 @@
 				47EE6AA017BCE9860030A125 /* LoginWindow.m */,
 				47EE6AA817BCF97C0030A125 /* Chat.h */,
 				47EE6AA917BCF97C0030A125 /* Chat.m */,
-				47EE6BA717BF89980030A125 /* WhiteView.h */,
-				47EE6BA817BF89990030A125 /* WhiteView.m */,
 				47EE6AA517BCF9710030A125 /* ChatWindow.h */,
 				47EE6AA617BCF9710030A125 /* ChatWindow.m */,
 				47EE6AB017BD15A10030A125 /* ChatMessageCell.h */,
@@ -297,6 +316,7 @@
 		474D3C3317BBCD7F0034A0E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				47527E5417C01EDA00211816 /* dsa_pub.pem */,
 				474D3C3417BBCD7F0034A0E2 /* InMac Chat-Info.plist */,
 				474D3C3517BBCD7F0034A0E2 /* InfoPlist.strings */,
 				474D3C3817BBCD7F0034A0E2 /* main.m */,
@@ -322,6 +342,8 @@
 			isa = PBXGroup;
 			children = (
 				47EE6BAD17BF9BC80030A125 /* Smiles */,
+				47527E5617C0335800211816 /* no-avatar.png */,
+				47527E5717C0335800211816 /* no-avatar@2x.png */,
 				47EE6B6A17BE64AB0030A125 /* icon_128x128.png */,
 				47EE6B6B17BE64AB0030A125 /* icon_128x128@2x.png */,
 				47EE6B6E17BE654C0030A125 /* icon.icns */,
@@ -433,6 +455,7 @@
 				474D3C2517BBCD7F0034A0E2 /* Sources */,
 				474D3C2617BBCD7F0034A0E2 /* Frameworks */,
 				474D3C2717BBCD7F0034A0E2 /* Resources */,
+				47527E4F17C014F000211816 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -458,6 +481,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = 474D3C2017BBCD7F0034A0E2;
 			productRefGroup = 474D3C2A17BBCD7F0034A0E2 /* Products */;
@@ -511,6 +535,9 @@
 				47EE6BE317BF9BE50030A125 /* icon_mad.gif in Resources */,
 				47EE6BE417BF9BE50030A125 /* icon_lol.gif in Resources */,
 				47EE6BE517BF9BE50030A125 /* icon_in_love.gif in Resources */,
+				47527E5517C01EDA00211816 /* dsa_pub.pem in Resources */,
+				47527E5817C0335800211816 /* no-avatar.png in Resources */,
+				47527E5917C0335800211816 /* no-avatar@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +573,6 @@
 				47EE6B9D17BEC2450030A125 /* AudioStreamer.m in Sources */,
 				47EE6BA017BECDF80030A125 /* News.m in Sources */,
 				47EE6BA617BF7FDA0030A125 /* ChatMessageCellTextScrollView.m in Sources */,
-				47EE6BA917BF899A0030A125 /* WhiteView.m in Sources */,
 				47EE6BE817BFCC630030A125 /* NSAttributedString+Magic.m in Sources */,
 				47EE6BEB17BFE5820030A125 /* NewsTableCell.m in Sources */,
 			);
@@ -558,7 +584,7 @@
 		474D3C3517BBCD7F0034A0E2 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				474D3C3617BBCD7F0034A0E2 /* en */,
+				47527E5217C0187500211816 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -566,7 +592,7 @@
 		474D3C3B17BBCD7F0034A0E2 /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				474D3C3C17BBCD7F0034A0E2 /* en */,
+				47527E5317C0187500211816 /* ru */,
 			);
 			name = Credits.rtf;
 			sourceTree = "<group>";
@@ -574,7 +600,7 @@
 		474D3C4117BBCD7F0034A0E2 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				474D3C4217BBCD7F0034A0E2 /* en */,
+				47527E5117C0187500211816 /* ru */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -646,6 +672,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InMac Chat/InMac Chat-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
@@ -663,6 +693,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "InMac Chat/InMac Chat-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;

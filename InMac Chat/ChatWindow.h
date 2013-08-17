@@ -8,7 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface ChatWindow : NSWindow <NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate, NSTabViewDelegate>
+@interface ChatWindow : NSWindow <NSTableViewDataSource, NSTableViewDelegate, NSTextFieldDelegate>
+
+@property (weak) IBOutlet NSView *newsView;
+@property (weak) IBOutlet NSView *radioView;
+@property (weak) IBOutlet NSView *chatView;
+- (IBAction)changeView:(id)sender;
 
 @property (weak) IBOutlet NSTextField *messageTextField;
 @property (weak) IBOutlet NSTableView *messagesTable;
