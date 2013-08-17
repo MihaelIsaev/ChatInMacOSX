@@ -9,6 +9,7 @@
 #import "ChatWindow.h"
 #import "Chat.h"
 #import "ChatMessageCell.h"
+#import "NSAttributedString+Magic.h"
 #import "NSString+Magic.h"
 #import "NSString+HTML.h"
 #import "AppDelegate.h"
@@ -23,6 +24,15 @@
     return [super initWithContentRect:contentRect styleMask:aStyle backing:bufferingType defer:flag];
 }
 
+- (void)tableViewColumnDidResize:(NSNotification *)aNotification
+{
+    NSRange visibleRows = [self.messagesTable rowsInRect:[[Chat shared] chatScrollView].contentView.bounds];
+    [NSAnimationContext beginGrouping];
+    [[NSAnimationContext currentContext] setDuration:0];
+    [self.messagesTable noteHeightOfRowsWithIndexesChanged:[NSIndexSet indexSetWithIndexesInRange:visibleRows]];
+    [NSAnimationContext endGrouping];
+}
+
 -(void)reloadData
 {
     [self.messagesTable reloadData];
@@ -31,16 +41,29 @@
 -(NSAttributedString*)attributedMessageTextForRow:(NSInteger)row
 {
     EntityMessages *message = [[[Chat shared] messages] objectAtIndex:row];
+    HTMLParser *parserTextBeforeSmiles = [[HTMLParser alloc] initWithString:[NSString stringWithFormat:@"<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"></head><body>%@</body></html>", message.text] error:nil];
+    HTMLNode *docTextBeforeSmiles = [parserTextBeforeSmiles doc];
+    NSString *rawText = [docTextBeforeSmiles rawContents];
+
+    for(HTMLNode *imgNode in [docTextBeforeSmiles findChildTags:@"img"])
+        if([[imgNode getAttributeNamed:@"class"] isEqualToString:@"smile"])
+        {
+            NSString *smileName = [[[imgNode getAttributeNamed:@"src"] replace:@"http://static.inmac.org/smiles/" to:@""] replace:@".gif" to:@""];
+            rawText = [rawText replace:[imgNode rawContents] to:[NSString stringWithFormat:@":%@:", smileName]];
+        }
+    
     HTMLParser *parserUser = [[HTMLParser alloc] initWithString:[NSString stringWithFormat:@"<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"></head><body>%@</body></html>", message.user] error:nil];
-    HTMLParser *parserText = [[HTMLParser alloc] initWithString:[NSString stringWithFormat:@"<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\"></head><body>%@</body></html>", message.text] error:nil];
+    HTMLParser *parserText = [[HTMLParser alloc] initWithString:rawText error:nil];
     HTMLNode *userBodyNode = [parserUser doc];
     HTMLNode *textBodyNode = [parserText doc];
-    NSString *text = [textBodyNode allContents];
-    NSString *user = [userBodyNode allContents];
+    NSString *text = [[textBodyNode allContents] trim];
+    NSString *user = [NSString stringWithFormat:@"%@::", [userBodyNode allContents]];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] init];
     [attributedString appendAttributedString: [[NSAttributedString alloc] initWithString:user]];
     [attributedString appendAttributedString: [[NSAttributedString alloc] initWithString:@"  "]];
     [attributedString appendAttributedString: [[NSAttributedString alloc] initWithString:text]];
+    [attributedString replaceSmilies];
+    
     [attributedString addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Verdana-Bold" size:12.0f] range:[attributedString.string rangeOfString:user]];
     //[attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSSingleUnderlineStyle] range:[attributedString.string rangeOfString:user]];
     [attributedString addAttribute:NSLinkAttributeName
@@ -61,7 +84,7 @@
                                  value:[NSString stringWithFormat:@"inmac://clickOnUser~%@", [bTextNode allContents]]
                                  range:[attributedString.string rangeOfString:[bTextNode allContents]]];
     }
-    
+    //NSLog(@"text: %@", attributedString.string);
     return attributedString;
 }
 
@@ -105,15 +128,8 @@
     else
         cellView.avatarButton.image = [[NSImage alloc] initWithData:[AppDelegate getObject:imageURLString]];
     [cellView setDate:message.time.stringValue];
-    if(!cellView.textViewTemp)
-    {
-        cellView.textViewTemp = cellView.textView;
-        [cellView.textViewTemp setFrame:cellView.scrollView.frame];
-        [cellView addSubview:cellView.textViewTemp];
-        [cellView.scrollView removeFromSuperview];
-    }
-    [cellView.textViewTemp.textStorage setAttributedString:[self attributedMessageTextForRow:row]];
-    [cellView.textViewTemp setLinkTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+    [cellView.textView.textStorage setAttributedString:[self attributedMessageTextForRow:row]];
+    [cellView.textView setLinkTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                   [self userColorByClass:message.userClass], NSForegroundColorAttributeName,
                                                   [self userColorByClass:message.userClass], NSStrokeColorAttributeName,
                                                   [NSCursor pointingHandCursor], NSCursorAttributeName,
@@ -126,14 +142,28 @@
 -(void)openUserProfile:(NSButton*)sender
 {
     NSInteger row = [self.messagesTable rowForView:sender.superview];
-    NSDictionary *message = [[[Chat shared] messages] objectAtIndex:row];
-    NSString *messageUID = [message objectForKey:@"uid"];
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://inmac.org/profile.php?mode=viewprofile&u=%@", messageUID]]];
+    EntityMessages *message = [[[Chat shared] messages] objectAtIndex:row];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://inmac.org/profile.php?mode=viewprofile&u=%@", message.uid]]];
+}
+
+- (IBAction)showSmiles:(id)sender
+{
+    if([self.smilesPopover isShown])
+        [self.smilesPopover close];
+    else
+        [self.smilesPopover showRelativeToRect:self.smilesButton.bounds ofView:self.smilesButton preferredEdge:NSMaxYEdge];
 }
 
 - (IBAction)removeMessage:(NSButton*)sender
 {
     [[Chat shared] didDeleteMessageRequestFromRow:[self.messagesTable rowForView:sender.superview]];
+}
+
+- (IBAction)clickSmile:(NSButton*)sender
+{
+    self.messageTextField.stringValue = [NSString stringWithFormat:@"%@ :%@: ", self.messageTextField.stringValue, sender.identifier];
+    [self.messageTextField becomeFirstResponder];
+    [[self.messageTextField currentEditor] moveToEndOfLine:nil];
 }
 
 -(NSColor*)userColorByClass:(NSString*)userClass
@@ -148,6 +178,22 @@
     else if([userClass contains:@"colorCPH"])
         userHexColor = @"0080FF";
     return [AppDelegate colorWithHexColorString:userHexColor];
+}
+
+#pragma mark - NSTextField Delegate
+-(void)controlTextDidEndEditing:(NSNotification *)notification
+{
+    if([[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement)
+    {
+        [[Chat shared] didSendMessageRequest];
+    }
+}
+
+#pragma mark - NSTabView Delegate
+- (void)tabView:(NSTabView *)tabView willSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+    if([tabViewItem.identifier intValue]==2)
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshNews" object:nil];
 }
 
 @end

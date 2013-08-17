@@ -1,5 +1,5 @@
 //
-//  MacStreamingPlayerController.h
+//  Radio.h
 //  MacStreamingPlayer
 //
 //  Created by Matt Gallagher on 28/10/08.
@@ -29,7 +29,7 @@
 @interface MediaKeyExampleApp : NSApplication
 @end
 
-@interface MacStreamingPlayerController : NSObject
+@interface Radio : NSObject
 {
 	IBOutlet NSButton *button;
     IBOutlet NSButton *timePlayed;
@@ -40,7 +40,7 @@
     SPMediaKeyTap *keyTap;
 }
 
-+ (MacStreamingPlayerController *)shared;
++ (Radio *)shared;
 - (IBAction)playPressed:(id)sender;
 - (IBAction)stopPressed:(id)sender;
 - (void)spinButton;

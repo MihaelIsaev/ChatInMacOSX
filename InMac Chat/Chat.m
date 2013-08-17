@@ -65,6 +65,18 @@ static Chat *shared;
         playSoundOutcomingMessage = [NSNumber numberWithBool:YES];
         [AppDelegate saveObject:playSoundOutcomingMessage forKey:kInMacPlaySoundOutcomingMessage];
     }
+    NSNumber *removeOldMessages = [AppDelegate getObject:kInMacRemoveOldMessages];
+    if(!removeOldMessages)
+    {
+        removeOldMessages = [NSNumber numberWithBool:NO];
+        [AppDelegate saveObject:removeOldMessages forKey:kInMacRemoveOldMessages];
+    }
+    NSNumber *playRadioOnStart = [AppDelegate getObject:kInMacPlayRadioOnStart];
+    if(!playRadioOnStart)
+    {
+        playRadioOnStart = [NSNumber numberWithBool:NO];
+        [AppDelegate saveObject:playRadioOnStart forKey:kInMacPlayRadioOnStart];
+    }
     NSNumber *chatUpdateSeconds = [AppDelegate getObject:kInMacChatUpdateSeconds];
     if(!chatUpdateSeconds)
     {
@@ -90,12 +102,12 @@ static Chat *shared;
     NSString *value = [separatedURL objectAtIndex:1];
     if([action isEqualToString:@"clickOnUser"])
     {
-        if(self.messageTextField.stringValue.length==0)
-            self.messageTextField.stringValue = [NSString stringWithFormat:@"[b]%@[/b]: ", [self urldecode:value]];
+        if(self.chatWindow.messageTextField.stringValue.length==0)
+            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"[b]%@[/b]: ", [[self urldecode:value] replace:@"::" to:@""]];
         else
-            self.messageTextField.stringValue = [NSString stringWithFormat:@"%@, [b]%@[/b]: ", [self.messageTextField.stringValue replace:@"[/b]: " to:@"[/b]"], [self urldecode:value]];
-        [self.messageTextField becomeFirstResponder];
-        [[self.messageTextField currentEditor] moveToEndOfLine:nil];
+            self.chatWindow.messageTextField.stringValue = [NSString stringWithFormat:@"%@, [b]%@[/b]: ", [self.chatWindow.messageTextField.stringValue replace:@"[/b]: " to:@"[/b]"], [[self urldecode:value] replace:@"::" to:@""]];
+        [self.chatWindow.messageTextField becomeFirstResponder];
+        [[self.chatWindow.messageTextField currentEditor] moveToEndOfLine:nil];
     }
     else if([action isEqualToString:@"openURL"])
     {
@@ -133,7 +145,7 @@ static Chat *shared;
 - (void)didSendMessageRequest
 {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://inmac.org/json/chat/"]];
-    NSString *paramsString = [NSString stringWithFormat:@"msg=%@", self.messageTextField.stringValue];
+    NSString *paramsString = [NSString stringWithFormat:@"msg=%@", self.chatWindow.messageTextField.stringValue];
     [request setHTTPBody:[paramsString dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     [request setCachePolicy:NSURLRequestReloadRevalidatingCacheData];
@@ -143,7 +155,7 @@ static Chat *shared;
     [request setTimeoutInterval:10];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     [conn start];
-    self.messageTextField.stringValue = @"";
+    self.chatWindow.messageTextField.stringValue = @"";
     NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"sent_message" ofType:@"aiff"];
     NSSound *systemSound = [[NSSound alloc] initWithContentsOfFile:resourcePath byReference:YES];
     if(systemSound && [[AppDelegate getObject:kInMacPlaySoundOutcomingMessage] boolValue])
@@ -249,16 +261,25 @@ static Chat *shared;
 {
     [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
     self.notification = [[NSUserNotification alloc] init];
-    self.notification.title = @"InMac Chat";
     if(messages.count==1)
     {
+        self.notification.title = @"Новое сообщение";
         NSDictionary *message = [messages objectAtIndex:0];
         NSString *user = [[message objectForKey:@"user"] stringByStrippingHTML];
         NSString *text = [[message objectForKey:@"text"] stringByStrippingHTML];
         self.notification.informativeText = [NSString stringWithFormat:@"%@: %@", user, text];
     }
     else
-        self.notification.informativeText = [NSString stringWithFormat:@"Новые сообщения: %liшт.", messages.count];
+    {
+        self.notification.title = @"Новые сообщения";
+        NSMutableString *from = [[NSMutableString alloc] init];
+        NSMutableDictionary *users = [[NSMutableDictionary alloc] init];
+        for(NSDictionary *message in messages)
+            [users setObject:@"" forKey:[[message objectForKey:@"user"] stringByStrippingHTML]];
+        for(int i=0;i<users.allKeys.count;i++)
+            [from appendFormat:(i<users.allKeys.count-1)?@"%@, ":@"%@", [users.allKeys objectAtIndex:i]];
+        self.notification.informativeText = [NSString stringWithFormat:@"от %@", from];
+    }
     if([[AppDelegate getObject:kInMacShowNotifications] boolValue])
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:self.notification];
 }
@@ -281,6 +302,13 @@ static Chat *shared;
     }
 }
 
+-(void)removeOldMessages
+{
+    [self.entityMessages removeOldMessages:self.moc];
+    [self.tempContext save];
+    [self loadMessages];
+}
+
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
     [self didGetNewMessagesRequest];
@@ -289,16 +317,7 @@ static Chat *shared;
 #pragma mark - ChatWindow Delegate
 - (void)windowDidResize:(NSNotification *)notification
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"newMessages" object:nil];
-}
-
-#pragma mark - NSTextField Delegate
--(void)controlTextDidEndEditing:(NSNotification *)notification
-{
-    if([[[notification userInfo] objectForKey:@"NSTextMovement"] intValue] == NSReturnTextMovement)
-    {
-        [self didSendMessageRequest];
-    }
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"newMessages" object:nil];
 }
 
 #pragma mark - SettingsWindow Delegate
@@ -324,6 +343,18 @@ static Chat *shared;
 - (IBAction)changePlaySoundOutcomingMessage:(NSButton*)sender
 {
     [AppDelegate saveObject:[NSNumber numberWithInteger:sender.state] forKey:kInMacPlaySoundOutcomingMessage];
+}
+
+- (IBAction)changeRemoveOldMessages:(NSButton*)sender
+{
+    [AppDelegate saveObject:[NSNumber numberWithInteger:sender.state] forKey:kInMacRemoveOldMessages];
+}
+
+- (IBAction)changePlayRadioOnStart:(NSButton*)sender
+{
+    [AppDelegate saveObject:[NSNumber numberWithInteger:sender.state] forKey:kInMacPlayRadioOnStart];
+    if(sender.state)
+        [self removeOldMessages];
 }
 
 - (IBAction)changeChatUpdateSeconds:(NSStepper*)sender
@@ -353,6 +384,10 @@ static Chat *shared;
         [self.playSoundIncomingMessageButton setState:[playSoundIncomingMessage boolValue]];
         NSNumber *playSoundOutcomingMessage = [AppDelegate getObject:kInMacPlaySoundOutcomingMessage];
         [self.playSoundOutcomingMessageButton setState:[playSoundOutcomingMessage boolValue]];
+        NSNumber *removeOldMessages = [AppDelegate getObject:kInMacRemoveOldMessages];
+        [self.removeOldMessagesButton setState:[removeOldMessages boolValue]];
+        NSNumber *playRadioOnStart = [AppDelegate getObject:kInMacPlayRadioOnStart];
+        [self.playRadioOnStartButton setState:[playRadioOnStart boolValue]];
         NSNumber *chatUpdateSeconds = [AppDelegate getObject:kInMacChatUpdateSeconds];
         self.chatUpdateSecondsTextField.stringValue = [NSString stringWithFormat:@"%.0f", [chatUpdateSeconds floatValue]];
         [self.chatUpdateSecondsStepper setIntValue:[chatUpdateSeconds intValue]];

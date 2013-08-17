@@ -8,6 +8,8 @@
 
 #import "Login.h"
 #import "Chat.h"
+#import "Radio.h"
+#import "AppDelegate.h"
 #import "HTMLParser.h"
 #import "NSString+Magic.h"
 
@@ -62,7 +64,7 @@ static Login *shared;
                                 result = [result replace:@"window.onload = function() {" to:@""];
                                 result = [result replace:@"}" to:@""];
                                 result = [result replace:@"';" to:@""];
-                                self.secretValue = [result trim];
+                                self.secretValue = [[[result trim] replace:@"+" to:@"%2B"] replace:@"=" to:@"%3D"];
                             }
                         }
                         break;
@@ -86,6 +88,7 @@ static Login *shared;
             self.isAuthorized = NO;
             [self.chatWindow close];
             [self.loginWindow setIsVisible:YES];
+            [[Radio shared] stopPressed:self];
         });
     });
 }
@@ -160,6 +163,10 @@ static Login *shared;
         [self.logoutMenuItem setHidden:NO];
         [self.loginWindow close];
         [self.chatWindow setIsVisible:YES];
+        if([[AppDelegate getObject:kInMacPlayRadioOnStart] boolValue])
+            [[Radio shared] playPressed:self];
+        if([[AppDelegate getObject:kInMacRemoveOldMessages] boolValue])
+            [[Chat shared] removeOldMessages];
         [[Chat shared] didGetNewMessagesRequest];
     }
     else

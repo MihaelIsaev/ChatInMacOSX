@@ -36,5 +36,6 @@
                         moc:(NSManagedObjectContext*)moc;
 -(NSArray*)getAll;
 -(NSArray*)getAll:(NSManagedObjectContext*)moc;
+-(void)removeOldMessages:(NSManagedObjectContext*)moc;
 
 @end

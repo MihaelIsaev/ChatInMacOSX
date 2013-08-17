@@ -1,13 +1,13 @@
 //
-//  NewsWindow.m
+//  WhiteView.h
 //  InMac Chat
 //
 //  Created by mihael on 17.08.13.
 //  Copyright (c) 2013 Mihael Isaev. All rights reserved.
 //
 
-#import "NewsWindow.h"
+#import <Cocoa/Cocoa.h>
 
-@implementation NewsWindow
+@interface WhiteView : NSView
 
 @end

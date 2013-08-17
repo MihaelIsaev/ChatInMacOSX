@@ -1,13 +1,13 @@
 //
-//  NewsWindow.h
+//  NewsTableCell.m
 //  InMac Chat
 //
 //  Created by mihael on 17.08.13.
 //  Copyright (c) 2013 Mihael Isaev. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "NewsTableCell.h"
 
-@interface NewsWindow : NSWindow
+@implementation NewsTableCell
 
 @end

@@ -1,5 +1,5 @@
 //
-//  MacStreamingPlayerController.m
+//  RadioController.m
 //  MacStreamingPlayer
 //
 //  Created by Matt Gallagher on 28/10/08.
@@ -22,7 +22,7 @@
 //
 
 #import <QuartzCore/CoreAnimation.h>
-#import "MacStreamingPlayerController.h"
+#import "Radio.h"
 #import "AudioStreamer.h"
 
 @implementation MediaKeyExampleApp
@@ -37,11 +37,11 @@
 
 @end
 
-@implementation MacStreamingPlayerController
+@implementation Radio
 
-static MacStreamingPlayerController *shared;
+static Radio *shared;
 
-+ (MacStreamingPlayerController *)shared
++ (Radio *)shared
 {
     return shared;
 }

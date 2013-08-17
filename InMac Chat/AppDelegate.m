@@ -11,7 +11,7 @@
 #import "Chat.h"
 #import "NSString+Magic.h"
 #import "SPMediaKeyTap.h"
-#import "MacStreamingPlayerController.h"
+#import "Radio.h"
 
 static AppDelegate *sharedInstance;
 
@@ -48,7 +48,7 @@ static AppDelegate *sharedInstance;
                                                              [SPMediaKeyTap defaultMediaKeyUserBundleIdentifiers],
                                                              kMediaKeyUsingBundleIdentifiersDefaultsKey,
                                                              nil]];
-    [[MacStreamingPlayerController shared] enableMediakeyListener];
+    [[Radio shared] enableMediakeyListener];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag

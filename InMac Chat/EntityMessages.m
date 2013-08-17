@@ -98,4 +98,23 @@ static NSString * const keyUserClass = @"userClass";
     }
 }
 
+-(void)removeOldMessages:(NSManagedObjectContext*)moc
+{
+    static NSString *temp = @"temp";
+    @synchronized (temp)
+    {
+        NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+        NSSortDescriptor *sd = [[NSSortDescriptor alloc] initWithKey:keyTime ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sd];
+        [fetch setSortDescriptors:sortDescriptors];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:[self getTableName] inManagedObjectContext:moc];
+        [fetch setEntity:entity];
+        NSString *maxDate = [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]-86400];
+        NSPredicate *searchFilter = [NSPredicate predicateWithFormat:@"%K<%@", keyTime, [NSDecimalNumber decimalNumberWithString:maxDate]];
+        [fetch setPredicate:searchFilter];
+        for(EntityMessages *message in [moc executeFetchRequest:fetch error:nil])
+            [moc deleteObject:message];
+    }
+}
+
 @end

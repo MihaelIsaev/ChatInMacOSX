@@ -14,6 +14,8 @@
 #define kInMacCountUnreadInDock @"countUnreadInDock"
 #define kInMacPlaySoundIncomingMessage @"playSoundIncomingMessage"
 #define kInMacPlaySoundOutcomingMessage @"playSoundOutcomingMessage"
+#define kInMacRemoveOldMessages @"removeOldMessages"
+#define kInMacPlayRadioOnStart @"playRadioOnStart"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
