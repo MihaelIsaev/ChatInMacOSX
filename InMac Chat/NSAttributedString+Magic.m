@@ -39,7 +39,7 @@
                    @"icon_sad.gif", @":icon_sad:",
                    @"icon_sad.gif", @":(",
                    @"icon_sad.gif", @":-(",
-                   @"icon_rolleys.gif", @":icon_rolleys:",
+                   @"icon_rolleyes.gif", @":icon_rolleyes:",
                    @"icon_redface.gif", @":icon_redface:",
                    @"icon_razz.gif", @":icon_razz:",
                    @"icon_rant.gif", @":icon_rant:",
